@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freunde werben & einen Monat gratis | SilverGuard</title>
+    <meta name="description" content="Empfehlen Sie SilverGuard weiter und erhalten Sie für jede erfolgreiche Empfehlung einen Monat gratis.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --sage:       #4a7c59;
+            --sage-dark:  #2d5a3d;
+            --sage-deep:  #1a3a27;
+            --sage-light: #e8f0eb;
+            --sage-mid:   #c2d9c9;
+            --cream:      #faf8f4;
+            --warm-white: #f5f2ec;
+            --stone:      #8a7f74;
+            --ink:        #1c1c1c;
+            --gold:       #c9a84c;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.75rem;
+            background: rgba(250,248,244,0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sage-mid);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 30px; height: 30px;
+            background: var(--sage); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--sage-deep), var(--sage-dark));
+            padding: 3.5rem 1.75rem 3rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(201,168,76,0.2);
+            border: 1px solid var(--gold);
+            padding: 0.35rem 0.85rem; border-radius: 100px;
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; font-weight: 700;
+            color: white; line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero p {
+            font-size: 0.95rem; color: var(--sage-mid);
+            font-weight: 300; line-height: 1.65;
+            max-width: 320px; margin: 0 auto 1.5rem;
+        }
+
+        .hero-stats {
+            display: flex; justify-content: center; gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 0.72rem; color: var(--sage-mid);
+            font-weight: 300;
+        }
+
+        .content { padding: 2rem 1.75rem; }
+
+        /* HOW IT WORKS */
+        .how-section {
+            background: white;
+            border: 1.5px solid var(--sage-mid);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .how-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--sage-deep); margin-bottom: 1.25rem;
+        }
+
+        .how-step {
+            display: flex; gap: 1rem; margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .how-num {
+            width: 36px; height: 36px;
+            background: var(--sage-deep); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.85rem; font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .how-step h4 {
+            font-size: 0.92rem; font-weight: 500;
+            color: var(--sage-deep); margin-bottom: 0.25rem;
+        }
+
+        .how-step p {
+            font-size: 0.82rem; color: var(--stone);
+            font-weight: 300; line-height: 1.5;
+        }
+
+        /* REWARD CARD */
+        .reward-card {
+            background: linear-gradient(135deg, var(--sage-deep), var(--sage-dark));
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reward-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .reward-icon {
+            font-size: 2.5rem; margin-bottom: 0.75rem;
+        }
+
+        .reward-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: white; margin-bottom: 0.5rem;
+        }
+
+        .reward-card p {
+            font-size: 0.85rem; color: var(--sage-mid);
+            font-weight: 300; line-height: 1.6;
+        }
+
+        .reward-highlight {
+            background: rgba(201,168,76,0.15);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* QR SECTION */
+        .qr-section {
+            background: var(--warm-white);
+            border: 1.5px solid var(--sage-mid);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .qr-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--sage-deep); margin-bottom: 0.5rem;
+        }
+
+        .qr-section p {
+            font-size: 0.82rem; color: var(--stone);
+            font-weight: 300; margin-bottom: 1rem;
+        }
+
+        .ref-code {
+            background: white;
+            border: 1.5px dashed var(--sage-mid);
+            border-radius: 12px;
+            padding: 0.85rem;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--sage-deep);
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .ref-link {
+            background: var(--sage-light);
+            border-radius: 10px;
+            padding: 0.65rem 0.85rem;
+            font-size: 0.78rem;
+            color: var(--sage-dark);
+            font-family: monospace;
+            word-break: break-all;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        #qrcode-empfehlung {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .btn-primary {
+            display: block; width: 100%;
+            background: var(--sage-deep); color: white;
+            padding: 1rem; border-radius: 12px;
+            font-size: 0.9rem; font-weight: 500;
+            text-decoration: none; text-align: center;
+            border: none; cursor: pointer;
+            display: flex; align-items: center;
+            justify-content: center; gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-secondary {
+            display: flex; width: 100%;
+            background: white; color: var(--sage-deep);
+            padding: 1rem; border-radius: 12px;
+            font-size: 0.9rem; font-weight: 500;
+            text-decoration: none; text-align: center;
+            border: 1.5px solid var(--sage-mid); cursor: pointer;
+            align-items: center; justify-content: center; gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-whatsapp {
+            display: flex; width: 100%;
+            background: #25D366; color: white;
+            padding: 1rem; border-radius: 12px;
+            font-size: 0.9rem; font-weight: 500;
+            text-decoration: none; text-align: center;
+            border: none; cursor: pointer;
+            align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* WHO CAN */
+        .who-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .who-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--sage-deep); margin-bottom: 1rem;
+        }
+
+        .who-card {
+            background: white;
+            border: 1px solid var(--sage-mid);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.85rem;
+        }
+
+        .who-icon {
+            width: 40px; height: 40px;
+            background: var(--sage-light);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+
+        .who-card h4 {
+            font-size: 0.88rem; font-weight: 500;
+            color: var(--sage-deep); margin-bottom: 0.15rem;
+        }
+
+        .who-card p {
+            font-size: 0.78rem; color: var(--stone);
+            font-weight: 300; line-height: 1.4;
+        }
+
+        footer {
+            background: var(--sage-deep);
+            padding: 2rem 1.75rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex; justify-content: center;
+            gap: 1.25rem; margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--sage-mid); text-decoration: none;
+            font-size: 0.78rem; font-weight: 300;
+        }
+
+        .footer-copy { font-size: 0.7rem; color: #3d6b4f; }
+
+        .copy-toast {
+            position: fixed; bottom: 5rem; left: 50%;
+            transform: translateX(-50%);
+            background: var(--sage-deep); color: white;
+            padding: 0.75rem 1.5rem; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 500;
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; z-index: 1000;
+        }
+
+        .copy-toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge"><i class="fas fa-gift" style="font-size:0.6rem;"></i> Empfehlungsprogramm</div>
+    <h1>Empfehlen &<br><em>gratis</em> profitieren</h1>
+    <p>Teilen Sie SilverGuard mit Freunden und Familie — für jede erfolgreiche Empfehlung schenken wir Ihnen einen Monat gratis.</p>
+
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Monat gratis<br>pro Empfehlung</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Empfehlungen<br>möglich</div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <!-- SO FUNKTIONIERT ES -->
+    <div class="how-section">
+        <div class="how-title">So einfach geht's</div>
+
+        <div class="how-step">
+            <div class="how-num">1</div>
+            <div>
+                <h4>Link oder QR Code teilen</h4>
+                <p>Schicken Sie Ihren persönlichen Link per WhatsApp oder zeigen Sie den QR Code.</p>
+            </div>
+        </div>
+
+        <div class="how-step">
+            <div class="how-num">2</div>
+            <div>
+                <h4>Freund registriert sich</h4>
+                <p>Ihr Freund startet die 14 Tage Gratis-Testphase über Ihren Link.</p>
+            </div>
+        </div>
+
+        <div class="how-step">
+            <div class="how-num">3</div>
+            <div>
+                <h4>Sie erhalten einen Monat gratis</h4>
+                <p>Sobald Ihr Freund zum zahlenden Kunden wird schreiben wir Ihnen einen Monat gut.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BELOHNUNG -->
+    <div class="reward-card">
+        <div class="reward-icon">🎁</div>
+        <h3>Ein Monat gratis</h3>
+        <p>Für jede erfolgreiche Empfehlung — ohne Limit. 5 Empfehlungen = 5 Monate gratis.</p>
+        <div class="reward-highlight">
+            <i class="fas fa-infinity"></i> Unbegrenzt kombinierbar
+        </div>
+        <p style="font-size:0.78rem;">Die Gutschrift erscheint automatisch in Ihrem nächsten Abrechnungszeitraum.</p>
+    </div>
+
+    <!-- QR & LINK -->
+    <div class="qr-section">
+        <h3>Ihr persönlicher Empfehlungslink</h3>
+        <p>Teilen Sie diesen Link oder QR Code mit Freunden und Familie</p>
+
+        <div class="ref-code" id="refCodeDisplay">WIRD GELADEN...</div>
+        <div class="ref-link" id="refLinkDisplay">https://www.silver-guard.de/registrierung.html?ref=...</div>
+
+        <div id="qrcode-empfehlung"></div>
+
+        <button class="btn-primary" onclick="copyLink()">
+            <i class="fas fa-copy"></i> Link kopieren
+        </button>
+
+        <a class="btn-whatsapp" id="whatsappShare" href="#">
+            <i class="fab fa-whatsapp"></i> Per WhatsApp teilen
+        </a>
+
+        <button class="btn-secondary" onclick="downloadQR()">
+            <i class="fas fa-download"></i> QR Code herunterladen
+        </button>
+    </div>
+
+    <!-- WER KANN EMPFEHLEN -->
+    <div class="who-section">
+        <div class="who-title">Wer profitiert besonders?</div>
+
+        <div class="who-card">
+            <div class="who-icon">👨‍👩‍👧‍👦</div>
+            <div>
+                <h4>Familien mit mehreren Geschwistern</h4>
+                <p>Jedes Geschwisterkind das sich anmeldet bringt Ihnen einen Monat gratis</p>
+            </div>
+        </div>
+
+        <div class="who-card">
+            <div class="who-icon">🏥</div>
+            <div>
+                <h4>Pflegeberater & Sozialarbeiter</h4>
+                <p>Empfehlen Sie SilverGuard Ihren Klienten — kontaktieren Sie uns für spezielle Konditionen</p>
+            </div>
+        </div>
+
+        <div class="who-card">
+            <div class="who-icon">💊</div>
+            <div>
+                <h4>Apotheken & Arztpraxen</h4>
+                <p>Legen Sie unsere Flyer aus — wir versorgen Sie kostenlos mit Materialien</p>
+            </div>
+        </div>
+
+        <div class="who-card">
+            <div class="who-icon">📱</div>
+            <div>
+                <h4>Social Media Nutzer</h4>
+                <p>Teilen Sie Ihren Link auf Instagram oder Facebook — jeder Klick zählt</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-copy">© 2026 Silver-Guard.de — Made for your family.</div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/491711473805" target="_blank" style="position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:999;text-decoration:none;">
+    <i class="fab fa-whatsapp" style="color:white;font-size:1.6rem;"></i>
+</a>
+
+<div class="copy-toast" id="copyToast">✓ Link kopiert!</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const refCode = params.get('code') || 'DEIN-CODE';
+    const baseUrl = 'https://www.silver-guard.de';
+    const refLink = baseUrl + '/registrierung.html?ref=' + refCode;
+
+    document.getElementById('refCodeDisplay').textContent = refCode;
+    document.getElementById('refLinkDisplay').textContent = refLink;
+
+    // WhatsApp Share
+    const waText = encodeURIComponent(
+        'Hallo! Ich nutze SilverGuard — der tägliche SMS Check-in für Mama. ' +
+        '14 Tage kostenlos testen: ' + refLink
+    );
+    document.getElementById('whatsappShare').href = 'https://wa.me/?text=' + waText;
+
+    // QR Code
+    new QRCode(document.getElementById('qrcode-empfehlung'), {
+        text: refLink,
+        width: 160,
+        height: 160,
+        colorDark: '#1a3a27',
+        colorLight: '#ffffff',
+    });
+
+    function copyLink() {
+        navigator.clipboard.writeText(refLink).then(() => {
+            const toast = document.getElementById('copyToast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        });
+    }
+
+    function downloadQR() {
+        const canvas = document.querySelector('#qrcode-empfehlung canvas');
+        if (canvas) {
+            const link = document.createElement('a');
+            link.download = 'silverguard-empfehlung-qr.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    }
+</script>
+
+</body>
+</html>
