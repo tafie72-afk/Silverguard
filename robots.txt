@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.silver-guard.de/sitemap.xml
+
+# Private pages - no indexing needed
+Disallow: /dashboard.html
+Disallow: /admin.html
+Disallow: /email-bestaetigung.html
