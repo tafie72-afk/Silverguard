@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverGuard – Der digitale Hausnotruf | Ab 9,90 € / Monat</title>
+    <meta name="description" content="SilverGuard ist der digitale Hausnotruf ohne Gerät und ohne Techniker. Täglicher KI-Check-in für Senioren per SMS. Ab 9,90 € / Monat, täglich kündbar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1a3a27">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SilverGuard">
+    <style>
+        :root {
+            --sage:       #4a7c59;
+            --sage-dark:  #2d5a3d;
+            --sage-deep:  #1a3a27;
+            --sage-light: #e8f0eb;
+            --sage-mid:   #c2d9c9;
+            --cream:      #faf8f4;
+            --warm-white: #f5f2ec;
+            --stone:      #8a7f74;
+            --ink:        #1c1c1c;
+            --gold:       #c9a84c;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.75rem;
+            background: rgba(250,248,244,0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sage-mid);
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; font-weight: 700;
+            color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: var(--sage); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.85rem;
+        }
+        .logo-ai {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300; font-size: 0.72rem;
+            color: var(--sage); letter-spacing: 0.1em;
+            text-transform: uppercase; align-self: flex-end; margin-bottom: 2px;
+        }
+        .nav-cta {
+            background: var(--sage-deep); color: white;
+            padding: 0.6rem 1.4rem; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 500;
+            text-decoration: none; letter-spacing: 0.02em;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .nav-cta:hover { background: var(--sage); transform: translateY(-1px); }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            padding: 5rem 1.75rem 4rem;
+            background: var(--warm-white);
+            overflow: hidden;
+        }
+        .hero-ring {
+            position: absolute; width: 480px; height: 480px;
+            border-radius: 50%; border: 60px solid var(--sage-light);
+            top: -120px; right: -140px; opacity: 0.6; pointer-events: none;
+        }
+        .hero-dot {
+            position: absolute; border-radius: 50%;
+            background: var(--sage-mid); pointer-events: none;
+        }
+        .hero-kicker {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--sage-light); color: var(--sage-dark);
+            border: 1px solid var(--sage-mid);
+            padding: 0.35rem 0.85rem; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem; font-weight: 700; line-height: 1.1;
+            color: var(--sage-deep); margin-bottom: 1.25rem; position: relative; z-index: 1;
+        }
+        .hero h1 em { font-style: italic; color: var(--sage); }
+        .hero-sub {
+            font-size: 1.05rem; color: var(--stone); line-height: 1.65;
+            max-width: 340px; margin-bottom: 2.25rem; font-weight: 300;
+        }
+        .hero-btn {
+            display: block; background: var(--sage-deep); color: white;
+            text-align: center; padding: 1.1rem 2rem; border-radius: 12px;
+            font-size: 1rem; font-weight: 500; text-decoration: none;
+            margin-bottom: 1rem;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 6px 24px rgba(29,58,39,0.18);
+        }
+        .hero-btn:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(29,58,39,0.22); }
+        .hero-note {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.82rem; color: var(--stone); justify-content: center;
+        }
+        .hero-note i { color: var(--sage); font-size: 0.75rem; }
+
+        /* ── TRUST STRIP ── */
+        .trust-strip {
+            background: var(--sage-deep); color: var(--sage-mid);
+            padding: 1rem 1.75rem;
+            display: flex; gap: 1.5rem;
+            overflow-x: auto; scrollbar-width: none;
+        }
+        .trust-strip::-webkit-scrollbar { display: none; }
+        .trust-item {
+            display: flex; align-items: center; gap: 0.5rem;
+            white-space: nowrap; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.03em;
+        }
+        .trust-item i { color: var(--gold); font-size: 0.7rem; }
+
+        /* ── SECTION COMMONS ── */
+        .section-label {
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--sage); margin-bottom: 0.6rem;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem; font-weight: 700;
+            color: var(--sage-deep); line-height: 1.15; margin-bottom: 2rem;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--sage-mid), transparent);
+            margin: 0 1.75rem;
+        }
+
+        /* ── STEPS ── */
+        .steps-section { padding: 4.5rem 1.75rem; background: var(--cream); }
+        .step { display: flex; gap: 1.25rem; margin-bottom: 2.5rem; position: relative; }
+        .step:not(:last-child)::after {
+            content: ''; position: absolute;
+            left: 19px; top: 44px; width: 2px; height: calc(100% - 10px);
+            background: linear-gradient(to bottom, var(--sage-mid), transparent);
+        }
+        .step-num {
+            width: 40px; height: 40px; border-radius: 50%;
+            border: 2px solid var(--sage-mid); background: var(--warm-white);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; font-weight: 600; color: var(--sage-dark);
+            flex-shrink: 0; position: relative; z-index: 1;
+        }
+        .step-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem; font-weight: 600; color: var(--sage-deep); margin-bottom: 0.35rem;
+        }
+        .step-content p { font-size: 0.92rem; color: var(--stone); line-height: 1.6; font-weight: 300; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { padding: 4rem 1.75rem; background: var(--warm-white); }
+        .testimonial-card {
+            background: var(--cream);
+            border: 1px solid var(--sage-mid);
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '\201C';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem; line-height: 1;
+            color: var(--sage-mid);
+            position: absolute; top: 0.75rem; left: 1.25rem;
+        }
+        .testimonial-text {
+            font-size: 0.95rem; color: #4a4a4a; line-height: 1.65;
+            font-weight: 300; margin-top: 1.5rem; margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .author-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--sage-light);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem; font-weight: 600; color: var(--sage-dark);
+            flex-shrink: 0;
+        }
+        .author-name { font-size: 0.85rem; font-weight: 500; color: var(--sage-deep); }
+        .author-role { font-size: 0.75rem; color: var(--stone); font-weight: 300; }
+        .stars { color: var(--gold); font-size: 0.7rem; margin-bottom: 0.1rem; }
+
+        /* ── PRICING ── */
+        .pricing-section { padding: 4.5rem 1.75rem; background: var(--cream); }
+        .pricing-intro { font-size: 0.92rem; color: var(--stone); font-weight: 300; margin-bottom: 2.5rem; line-height: 1.55; }
+        .card { border-radius: 20px; padding: 2rem 1.75rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; }
+        .card-base { background: var(--warm-white); border: 1.5px solid var(--sage-mid); }
+        .card-premium { background: var(--sage-deep); }
+        .card-badge {
+            position: absolute; top: 1.25rem; right: 1.25rem;
+            background: var(--gold); color: var(--sage-deep);
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 100px;
+        }
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+        .card-base .card-title { color: var(--sage); }
+        .card-premium .card-title { color: var(--sage-mid); }
+        .card-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.2rem;
+        }
+        .card-base .card-price { color: var(--sage-deep); }
+        .card-premium .card-price { color: white; }
+        .card-period { font-size: 0.8rem; font-weight: 300; margin-bottom: 1.5rem; }
+        .card-base .card-period { color: var(--stone); }
+        .card-premium .card-period { color: var(--sage-mid); }
+        .card-features { list-style: none; margin-bottom: 1.75rem; }
+        .card-features li {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            font-size: 0.88rem; font-weight: 300; line-height: 1.5; margin-bottom: 0.7rem;
+        }
+        .card-base .card-features li { color: #4a4a4a; }
+        .card-premium .card-features li { color: #b8cebf; }
+        .card-features li i { font-size: 0.7rem; margin-top: 0.22rem; flex-shrink: 0; }
+        .card-base .card-features li i { color: var(--sage); }
+        .card-premium .card-features li i { color: var(--gold); }
+        .btn-card {
+            display: block; width: 100%; text-align: center;
+            padding: 1rem; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 500; cursor: pointer; border: none;
+            letter-spacing: 0.02em;
+            transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+        }
+        .btn-card:hover { transform: translateY(-2px); }
+        .btn-base { background: var(--sage-deep); color: white; box-shadow: 0 4px 16px rgba(29,58,39,0.14); }
+        .btn-base:hover { background: var(--sage); box-shadow: 0 8px 24px rgba(29,58,39,0.2); }
+        .btn-premium { background: white; color: var(--sage-deep); box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
+        .btn-premium:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+
+        /* ── FAQ ── */
+        .faq-section { padding: 4.5rem 1.75rem; background: var(--warm-white); }
+        .faq-item {
+            border-bottom: 1px solid var(--sage-mid);
+            padding: 1.25rem 0;
+        }
+        .faq-question {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 1rem; cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; font-weight: 600; color: var(--sage-deep);
+            line-height: 1.35;
+            background: none; border: none; width: 100%; text-align: left;
+            padding: 0;
+        }
+        .faq-question i {
+            color: var(--sage); font-size: 0.75rem; margin-top: 0.3rem;
+            flex-shrink: 0; transition: transform 0.25s;
+        }
+        .faq-question.open i { transform: rotate(180deg); }
+        .faq-answer {
+            font-size: 0.9rem; color: var(--stone); line-height: 1.65;
+            font-weight: 300; max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.25s;
+        }
+        .faq-answer.open { max-height: 300px; padding-top: 0.75rem; }
+
+        /* ── REASSURANCE ── */
+        .reassurance { padding: 3.5rem 1.75rem; background: var(--sage-light); }
+        .reassurance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .r-item { background: white; border-radius: 14px; padding: 1.25rem; text-align: center; }
+        .r-item .r-icon { font-size: 1.4rem; color: var(--sage); margin-bottom: 0.6rem; }
+        .r-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; color: var(--sage-deep); margin-bottom: 0.25rem; }
+        .r-item p { font-size: 0.76rem; color: var(--stone); font-weight: 300; line-height: 1.4; }
+
+        /* ── LEGAL PAGES (hidden by default) ── */
+        .legal-page {
+            display: none;
+            position: fixed; inset: 0; z-index: 200;
+            background: var(--cream); overflow-y: auto;
+            padding: 2rem 1.75rem 4rem;
+        }
+        .legal-page.active { display: block; }
+        .legal-close {
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--sage); font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; border: none; background: none;
+            margin-bottom: 2rem; padding: 0;
+        }
+        .legal-close i { font-size: 0.8rem; }
+        .legal-page h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 700; color: var(--sage-deep);
+            margin-bottom: 1.5rem;
+        }
+        .legal-page h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 600; color: var(--sage-deep);
+            margin: 1.5rem 0 0.5rem;
+        }
+        .legal-page p, .legal-page li {
+            font-size: 0.88rem; color: #4a4a4a; line-height: 1.7; font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+        .legal-page ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+        .legal-placeholder {
+            display: inline-block;
+            background: #fff3cd; border: 1px dashed #c9a84c;
+            padding: 0.1rem 0.4rem; border-radius: 4px;
+            font-size: 0.82rem; color: #8a6a00; font-style: italic;
+        }
+
+        /* ── FOOTER ── */
+        footer { background: var(--sage-deep); padding: 2.5rem 1.75rem; text-align: center; }
+        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--sage-mid); margin-bottom: 1.25rem; }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .footer-links a {
+            color: var(--sage-mid); text-decoration: none;
+            font-size: 0.8rem; font-weight: 300; letter-spacing: 0.03em;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .footer-links a:hover { color: white; }
+        .footer-copy { font-size: 0.72rem; color: #3d6b4f; letter-spacing: 0.03em; }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-kicker { animation: fadeUp 0.5s ease both; }
+        .hero h1     { animation: fadeUp 0.55s 0.08s ease both; }
+        .hero-sub    { animation: fadeUp 0.55s 0.16s ease both; }
+        .hero-btn    { animation: fadeUp 0.55s 0.24s ease both; }
+        .hero-note   { animation: fadeUp 0.55s 0.3s ease both; }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     LEGAL PAGES (Overlay)
+══════════════════════════════ -->
+<div id="page-impressum" class="legal-page">
+    <button class="legal-close" onclick="closeLegal()"><i class="fas fa-arrow-left"></i> Zurück</button>
+    <h2>Impressum</h2>
+    <h3>Angaben gemäß § 5 TMG</h3>
+    <p>Tanja Fiestelmann<br>
+       Steiner Weg 53<br>
+       90449 Nürnberg
+    </p>
+    <h3>Kontakt</h3>
+    <p>Telefon: 0171 1473805<br>
+       E-Mail: info@silver-guard.de
+    </p>
+    <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+    <p>Tanja Fiestelmann, Steiner Weg 53, 90449 Nürnberg</p>
+    <h3>Haftungsausschluss</h3>
+    <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+</div>
+
+<div id="page-datenschutz" class="legal-page">
+    <button class="legal-close" onclick="closeLegal()"><i class="fas fa-arrow-left"></i> Zurück</button>
+    <h2>Datenschutzerklärung</h2>
+    <h3>1. Verantwortlicher</h3>
+    <p>Verantwortlich im Sinne der DSGVO ist: Tanja Fiestelmann, Steiner Weg 53, 90449 Nürnberg, info@silver-guard.de</p>
+    <h3>2. Welche Daten wir erheben</h3>
+    <ul>
+        <li>Mobilfunknummer der zu betreuenden Person</li>
+        <li>Mobilfunknummer / E-Mail der anmeldenden Person</li>
+        <li>Im Paket „Familien-Fürsorge" und „Premium": Standortdaten (nur bei freiwilligem Klick im Notfall)</li>
+        <li>Zeitstempel der täglichen Check-in-Antworten</li>
+    </ul>
+    <h3>3. Zweck der Datenverarbeitung</h3>
+    <p>Die erhobenen Daten werden ausschließlich zur Erbringung des gebuchten Dienstes verwendet. Eine Weitergabe an Dritte findet nicht statt, mit Ausnahme technischer Dienstleister (z.B. SMS-Anbieter), die vertraglich zur Vertraulichkeit verpflichtet sind.</p>
+    <h3>4. Standort-Link im Notfall</h3>
+    <p>Standortdaten werden ausschließlich auf freiwilliger Basis übermittelt — Ihre Liebsten entscheiden selbst durch aktives Tippen ob sie den Standort teilen. Die Daten werden einmalig und nur an Sie weitergeleitet, nicht gespeichert und nicht für andere Zwecke verwendet.</p>
+    <h3>5. Speicherort</h3>
+    <p>Alle Daten werden ausschließlich auf Servern in Deutschland verarbeitet und gespeichert.</p>
+    <h3>6. Ihre Rechte</h3>
+    <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+    </ul>
+    <p>Zur Ausübung Ihrer Rechte kontaktieren Sie uns unter: info@silver-guard.de</p>
+    <h3>7. Kündigung und Datenlöschung</h3>
+    <p>Nach Kündigung des Dienstes werden alle personenbezogenen Daten innerhalb von 30 Tagen vollständig gelöscht.</p>
+</div>
+
+<!-- ══════════════════════════════
+     MAIN PAGE
+══════════════════════════════ -->
+
+<nav>
+    <div class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        <div>SilverGuard <span class="logo-ai">AI</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.6rem;">
+        <a href="login.html" style="font-size:0.82rem;color:var(--sage-dark);font-weight:400;text-decoration:none;padding:0.6rem 0.9rem;">Mein Konto</a>
+        <a href="#preise" class="nav-cta">Jetzt testen</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-ring"></div>
+    <div class="hero-dot" style="top:60%;left:8%;width:8px;height:8px;"></div>
+    <div class="hero-dot" style="top:30%;left:85%;width:14px;height:14px;opacity:0.5"></div>
+    <div class="hero-kicker">
+        <i class="fas fa-circle" style="font-size:0.45rem;color:var(--sage);"></i>
+        Der digitale Hausnotruf · Ohne Gerät
+    </div>
+    <h1>Wissen,<br>dass es <em>Mama</em><br>gut geht.</h1>
+    <p class="hero-sub">SilverGuard ist der moderne Hausnotruf — kein Gerät, kein Techniker, kein Vertrag. Nur ein täglicher SMS-Check-in ab 9,90 €.</p>
+    <a href="registrierung.html" class="hero-btn">14 Tage kostenlos testen</a>
+    <div class="hero-note">
+        <i class="fas fa-check-circle"></i>
+        14 Tage gratis · Dann ab 9,90 € / Monat · Täglich kündbar
+    </div>
+</header>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+    <div class="trust-item"><i class="fas fa-star"></i> Über 2.400 Familien</div>
+    <div class="trust-item"><i class="fas fa-gift"></i> 14 Tage gratis testen</div>
+    <div class="trust-item"><i class="fas fa-lock"></i> DSGVO-konform</div>
+    <div class="trust-item"><i class="fas fa-server"></i> Server in Deutschland</div>
+    <div class="trust-item"><i class="fas fa-headset"></i> Persönlicher Support</div>
+    <div class="trust-item"><i class="fas fa-star"></i> 4,8 / 5 Bewertung</div>
+</div>
+
+<!-- STEPS -->
+<section class="steps-section">
+    <div class="section-label">So funktioniert's</div>
+    <h2 class="section-title serif">In drei<br>Schritten<br>verbunden sein.</h2>
+    <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+            <h3>Einrichtung in 2 Minuten</h3>
+            <p>Sie tragen die Handynummer der Eltern und Ihre eigene ein. Kein Techniker, keine App-Downloads nötig.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+            <h3>Der tägliche Morgen-Gruß</h3>
+            <p>Ihre Liebsten erhalten jeden Morgen eine SMS mit einem einfachen Bestätigungs-Link. Ein einziger Klick genügt.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+            <h3>Die KI sorgt — Sie entspannen</h3>
+            <p>Bleibt die Rückmeldung aus, analysiert unsere KI die Situation und informiert Sie sofort — per Anruf, ohne Umwege.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HAUSNOTRUF VERGLEICH -->
+<section style="padding:4.5rem 1.75rem;background:var(--cream);">
+    <div class="section-label">Der Unterschied</div>
+    <h2 class="section-title serif">Digitaler Hausnotruf<br>vs. klassisch.</h2>
+
+    <!-- Klassisch -->
+    <div style="background:var(--warm-white);border:1.5px solid #e5e7eb;border-radius:18px;padding:1.5rem;margin-bottom:1rem;">
+        <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:1rem;">Klassischer Hausnotruf</div>
+        <div style="display:flex;flex-direction:column;gap:0.65rem;">
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#6b7280;font-weight:300;">
+                <i class="fas fa-times" style="color:#ef4444;font-size:0.7rem;flex-shrink:0;"></i> 30–60 € pro Monat
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#6b7280;font-weight:300;">
+                <i class="fas fa-times" style="color:#ef4444;font-size:0.7rem;flex-shrink:0;"></i> Extra Gerät nötig
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#6b7280;font-weight:300;">
+                <i class="fas fa-times" style="color:#ef4444;font-size:0.7rem;flex-shrink:0;"></i> Techniker zur Installation
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#6b7280;font-weight:300;">
+                <i class="fas fa-times" style="color:#ef4444;font-size:0.7rem;flex-shrink:0;"></i> Langfristiger Vertrag
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#6b7280;font-weight:300;">
+                <i class="fas fa-times" style="color:#ef4444;font-size:0.7rem;flex-shrink:0;"></i> Knopf muss getragen werden
+            </div>
+        </div>
+    </div>
+
+    <!-- SilverGuard -->
+    <div style="background:var(--sage-deep);border-radius:18px;padding:1.5rem;">
+        <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-mid);margin-bottom:1rem;">SilverGuard – Digitaler Hausnotruf</div>
+        <div style="display:flex;flex-direction:column;gap:0.65rem;">
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#b8cebf;font-weight:300;">
+                <i class="fas fa-check" style="color:var(--gold);font-size:0.7rem;flex-shrink:0;"></i> Ab 9,90 € pro Monat
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#b8cebf;font-weight:300;">
+                <i class="fas fa-check" style="color:var(--gold);font-size:0.7rem;flex-shrink:0;"></i> Kein extra Gerät — nur das Handy
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#b8cebf;font-weight:300;">
+                <i class="fas fa-check" style="color:var(--gold);font-size:0.7rem;flex-shrink:0;"></i> Einrichtung in 2 Minuten
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#b8cebf;font-weight:300;">
+                <i class="fas fa-check" style="color:var(--gold);font-size:0.7rem;flex-shrink:0;"></i> Täglich kündbar
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:#b8cebf;font-weight:300;">
+                <i class="fas fa-check" style="color:var(--gold);font-size:0.7rem;flex-shrink:0;"></i> Nichts tragen, nichts installieren
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="section-label">Erfahrungen</div>
+    <h2 class="section-title serif">Was Familien<br>sagen.</h2>
+
+    <div class="testimonial-card">
+        <p class="testimonial-text">Meine Mutter wohnt 200 km entfernt. Seit SilverGuard schlafe ich morgens wieder ruhig — ich weiß, wenn etwas nicht stimmt, werde ich sofort angerufen.</p>
+        <div class="testimonial-author">
+            <div class="author-avatar">MK</div>
+            <div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="author-name">Monika K.</div>
+                <div class="author-role">Tochter, 52 Jahre · Hamburg</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial-card">
+        <p class="testimonial-text">Mein Vater weigerte sich jahrelang, ein Notfallknopf-System zu tragen. SilverGuard braucht nichts davon — nur sein altes Nokia. Perfekt.</p>
+        <div class="testimonial-author">
+            <div class="author-avatar">TR</div>
+            <div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="author-name">Thomas R.</div>
+                <div class="author-role">Sohn, 47 Jahre · München</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial-card">
+        <p class="testimonial-text">Die Einrichtung hat buchstäblich 3 Minuten gedauert. Keine Technik, kein Ärger. Einfach funktioniert.</p>
+        <div class="testimonial-author">
+            <div class="author-avatar">SB</div>
+            <div>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <div class="author-name">Sandra B.</div>
+                <div class="author-role">Tochter, 44 Jahre · Berlin</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="preise" class="pricing-section">
+    <div class="section-label">Ihre Wahl</div>
+    <h2 class="section-title serif">Fürsorge,<br>die passt.</h2>
+    <p class="pricing-intro">14 Tage kostenlos testen — danach täglich kündbar. Keine versteckten Kosten, kein Vertrag.</p>
+
+    <!-- Basis -->
+    <div class="card card-base">
+        <div class="card-title">Basis-Fürsorge</div>
+        <div class="card-price">9,90 €</div>
+        <div class="card-period">14 Tage gratis · dann pro Monat</div>
+        <ul class="card-features">
+            <li><i class="fas fa-check"></i> Täglicher Check-in per SMS</li>
+            <li><i class="fas fa-check"></i> Bestätigungs-Mail bei Erfolg</li>
+            <li><i class="fas fa-check"></i> Sofortige Benachrichtigung bei Ausbleiben</li>
+            <li><i class="fas fa-check"></i> 1 Person</li>
+        </ul>
+        <button class="btn-card btn-base" onclick="window.location.href='registrierung.html'">Jetzt sichern</button>
+    </div>
+
+    <!-- Familie -->
+    <div class="card card-base" style="border-color:var(--sage);">
+        <div class="card-badge" style="background:var(--sage);color:white;">Beliebt</div>
+        <div class="card-title">Familien-Fürsorge</div>
+        <div class="card-price">14,90 €</div>
+        <div class="card-period">14 Tage gratis · dann pro Monat</div>
+        <ul class="card-features">
+            <li><i class="fas fa-check"></i> Alles aus Basis-Fürsorge</li>
+            <li><i class="fas fa-check"></i> KI-Anruf bei Notfall</li>
+            <li><i class="fas fa-check"></i> Standort-Link im Notfall</li>
+            <li><i class="fas fa-check"></i> Bis zu 3 Liebste</li>
+        </ul>
+        <button class="btn-card btn-base" onclick="window.location.href='registrierung.html'">Familie wählen</button>
+    </div>
+
+    <!-- Premium -->
+    <div class="card card-premium">
+        <div class="card-badge">Premium</div>
+        <div class="card-title">Fürsorge AI Premium</div>
+        <div class="card-price">19,90 €</div>
+        <div class="card-period">14 Tage gratis · dann pro Monat</div>
+        <ul class="card-features">
+            <li><i class="fas fa-check"></i> Alles aus Familien-Fürsorge</li>
+            <li><i class="fas fa-check"></i> Wohlbefindens-Fragen täglich</li>
+            <li><i class="fas fa-check"></i> Wochenbericht per E-Mail</li>
+            <li><i class="fas fa-check"></i> WhatsApp statt SMS</li>
+            <li><i class="fas fa-check"></i> Bis zu 5 Liebste</li>
+            <li><i class="fas fa-check"></i> Priorisierter 24/7-Support</li>
+        </ul>
+        <button class="btn-card btn-premium" onclick="window.location.href='registrierung.html'">Premium wählen</button>
+    </div>
+
+    <!-- Family-Lizenz -->
+    <div class="card" style="background:linear-gradient(135deg,#1a3a27,#2d5a3d);border:none;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;right:0;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.03);transform:translate(50px,-50px);pointer-events:none;"></div>
+        <div class="card-badge" style="background:var(--gold);color:var(--sage-deep);">Neu</div>
+        <div class="card-title" style="color:var(--gold);">Family-Lizenz</div>
+        <div class="card-price" style="color:white;">29,90 €</div>
+        <div class="card-period" style="color:var(--sage-mid);">14 Tage gratis · dann pro Monat</div>
+        <ul class="card-features" style="margin-bottom:0.75rem;">
+            <li style="color:#b8cebf;"><i class="fas fa-check" style="color:var(--gold);"></i> Alles aus Premium</li>
+            <li style="color:#b8cebf;"><i class="fas fa-check" style="color:var(--gold);"></i> Unbegrenzt Senioren</li>
+            <li style="color:#b8cebf;"><i class="fas fa-check" style="color:var(--gold);"></i> Unbegrenzt Angehörige</li>
+            <li style="color:#b8cebf;"><i class="fas fa-check" style="color:var(--gold);"></i> Family-Admin Dashboard</li>
+            <li style="color:#b8cebf;"><i class="fas fa-check" style="color:var(--gold);"></i> Alle auf einen Blick</li>
+            <li style="color:#b8cebf;"><i class="fas fa-check" style="color:var(--gold);"></i> Ideal für große Familien & Pflegedienste</li>
+        </ul>
+        <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:0.75rem;margin-bottom:1rem;">
+            <p style="font-size:0.75rem;color:var(--sage-mid);font-weight:300;line-height:1.5;margin:0;">Für Pflegedienste & Organisationen: Sprechen Sie uns für individuelle Konditionen an.</p>
+        </div>
+        <button class="btn-card" style="background:var(--gold);color:var(--sage-deep);font-weight:600;" onclick="window.location.href='kontakt.html'">Family-Lizenz anfragen</button>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="section-label">Häufige Fragen</div>
+    <h2 class="section-title serif">Antworten<br>auf Ihre<br>Fragen.</h2>
+
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            Braucht meine Mutter ein Smartphone?
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+            Nein. SilverGuard funktioniert mit jedem normalen Mobiltelefon, das SMS empfangen kann — auch mit alten Tastentelefonen. Es wird keine App benötigt.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            Wie funktioniert der Standort-Link im Notfall?
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+            Der Standort-Link ist freiwillig und liegt vollständig in den Händen Ihrer Liebsten — nicht bei Ihnen, nicht bei SilverGuard.<br><br>
+            So funktioniert es: Bleibt der tägliche Check-in aus, sendet unser System nach zwei Stunden eine Erinnerungs-SMS. In dieser SMS ist optional ein Standort-Link enthalten. Ihre Liebsten können darauf klicken — müssen es aber nicht. Erst wenn sie klicken wird der Standort einmalig an Sie übermittelt, genau wie bei Google Maps wenn man seinen Standort teilt.<br><br>
+            Wichtig: Der Standort wird nicht dauerhaft verfolgt, nicht gespeichert und nicht für andere Zwecke genutzt. Es ist ein einmaliger freiwilliger Klick — kein Zwang, keine dauerhafte Ortung. Ihre Liebsten werden beim ersten Check-in darüber informiert und entscheiden selbst.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            Was passiert, wenn meine Eltern vergessen zu antworten?
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+            Nach dem Ausbleiben der Antwort bis zur konfigurierten Wartezeit (Standard: 2 Stunden) sendet das System eine Erinnerung. Bleibt auch diese aus, werden Sie per Anruf benachrichtigt. Im Familien- und Premium-Paket wird zusätzlich ein freiwilliger Standort-Link an Ihre Liebsten gesendet.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            Kann ich den Dienst wirklich täglich kündigen?
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+            Ja. Es gibt keinen Mindestvertrag und keine Kündigungsfristen. Sie können den Dienst jederzeit über Ihr Kundenkonto deaktivieren — die Abrechnung stoppt sofort.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+            Wo werden meine Daten gespeichert?
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+            Alle Daten werden ausschließlich auf zertifizierten Servern in Deutschland verarbeitet und gespeichert. Wir geben Ihre Daten nicht an Dritte weiter. Details finden Sie in unserer Datenschutzerklärung.
+        </div>
+    </div>
+</section>
+
+<!-- REASSURANCE -->
+<section class="reassurance">
+    <div class="section-label" style="text-align:center;margin-bottom:1.25rem;">Unser Versprechen</div>
+    <div class="reassurance-grid">
+        <div class="r-item">
+            <div class="r-icon"><i class="fas fa-server"></i></div>
+            <h4>Server in DE</h4>
+            <p>Alle Daten auf deutschen Servern.</p>
+        </div>
+        <div class="r-item">
+            <div class="r-icon"><i class="fas fa-file-shield"></i></div>
+            <h4>DSGVO</h4>
+            <p>Vollständig datenschutzkonform.</p>
+        </div>
+        <div class="r-item">
+            <div class="r-icon"><i class="fas fa-mobile-screen"></i></div>
+            <h4>Kein Smartphone</h4>
+            <p>Läuft auf jedem Mobiltelefon.</p>
+        </div>
+        <div class="r-item">
+            <div class="r-icon"><i class="fas fa-calendar-xmark"></i></div>
+            <h4>Kein Vertrag</h4>
+            <p>Täglich kündbar, ohne Fristen.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">SilverGuard AI</div>
+    <div style="margin-bottom:1rem;display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;">
+        <a href="mailto:info@silver-guard.de" style="color:var(--sage-mid);font-size:0.85rem;font-weight:300;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+            <i class="fas fa-envelope" style="font-size:0.75rem;color:var(--gold);"></i>
+            info@silver-guard.de
+        </a>
+        <a href="https://wa.me/491711473805" target="_blank" style="color:var(--sage-mid);font-size:0.85rem;font-weight:300;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+            <i class="fab fa-whatsapp" style="font-size:0.85rem;color:#25D366;"></i>
+            WhatsApp
+        </a>
+    </div>
+    <div class="footer-links">
+        <a href="kontakt.html">Kontakt</a>
+        <a onclick="openLegal('impressum')">Impressum</a>
+        <a onclick="openLegal('datenschutz')">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </div>
+    <div class="footer-copy">© 2026 Silver-Guard.de — Made for your family.</div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/491711473805?text=Hallo%20SilverGuard%2C%20ich%20habe%20eine%20Frage%20zu%20Ihrem%20Dienst." target="_blank" style="
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    z-index: 999;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <i class="fab fa-whatsapp" style="color:white;font-size:1.6rem;"></i>
+</a>
+
+<script>
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-question.open').forEach(b => b.classList.remove('open'));
+        if (!isOpen) {
+            answer.classList.add('open');
+            btn.classList.add('open');
+        }
+    }
+
+    function openLegal(page) {
+        document.getElementById('page-' + page).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    function closeLegal() {
+        document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('active'));
+    }
+</script>
+</body>
+</html>
