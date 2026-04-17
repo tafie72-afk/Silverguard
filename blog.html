@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausnotruf ohne Gerät – Die moderne Alternative 2026 | SilverGuard</title>
+    <meta name="description" content="Klassischer Hausnotruf zu teuer und kompliziert? SilverGuard ist die moderne Alternative — kein Gerät, kein Techniker, ab 9,90 € pro Monat.">
+    <meta name="keywords" content="Hausnotruf ohne Gerät, digitaler Hausnotruf, Hausnotruf Alternative, Senioren Check-in, Eltern alleine zuhause">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage:       #4a7c59;
+            --sage-dark:  #2d5a3d;
+            --sage-deep:  #1a3a27;
+            --sage-light: #e8f0eb;
+            --sage-mid:   #c2d9c9;
+            --cream:      #faf8f4;
+            --warm-white: #f5f2ec;
+            --stone:      #8a7f74;
+            --ink:        #1c1c1c;
+            --gold:       #c9a84c;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.75rem;
+            background: rgba(250,248,244,0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sage-mid);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 30px; height: 30px;
+            background: var(--sage); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem;
+        }
+
+        .nav-cta {
+            background: var(--sage-deep); color: white;
+            padding: 0.55rem 1.2rem; border-radius: 100px;
+            font-size: 0.82rem; font-weight: 500;
+            text-decoration: none;
+        }
+
+        /* ── ARTICLE HEADER ── */
+        .article-header {
+            background: var(--warm-white);
+            padding: 3rem 1.75rem 2.5rem;
+            border-bottom: 1px solid var(--sage-mid);
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            font-size: 0.78rem; color: var(--sage);
+            text-decoration: none; font-weight: 400;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-category {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--sage-light); color: var(--sage-dark);
+            border: 1px solid var(--sage-mid);
+            padding: 0.3rem 0.75rem; border-radius: 100px;
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .article-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem; font-weight: 700; line-height: 1.15;
+            color: var(--sage-deep); margin-bottom: 1rem;
+        }
+
+        .article-header h1 em { font-style: italic; color: var(--sage); }
+
+        .article-meta {
+            display: flex; align-items: center; gap: 1rem;
+            font-size: 0.78rem; color: var(--stone); font-weight: 300;
+            flex-wrap: wrap;
+        }
+
+        .article-meta span {
+            display: flex; align-items: center; gap: 0.3rem;
+        }
+
+        .article-meta i { font-size: 0.7rem; color: var(--sage); }
+
+        /* ── ARTICLE BODY ── */
+        .article-body {
+            padding: 2.5rem 1.75rem;
+            max-width: 680px;
+        }
+
+        .article-body h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--sage-deep); line-height: 1.2;
+            margin: 2.5rem 0 0.75rem;
+        }
+
+        .article-body h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--sage-dark);
+            margin: 1.75rem 0 0.5rem;
+        }
+
+        .article-body p {
+            font-size: 0.97rem; color: #3a3a3a;
+            line-height: 1.75; font-weight: 300;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-body strong { font-weight: 500; color: var(--ink); }
+
+        .article-body ul {
+            list-style: none; margin-bottom: 1.25rem;
+        }
+
+        .article-body ul li {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            font-size: 0.95rem; color: #3a3a3a;
+            line-height: 1.65; font-weight: 300;
+            margin-bottom: 0.6rem;
+        }
+
+        .article-body ul li i {
+            font-size: 0.65rem; color: var(--sage);
+            margin-top: 0.35rem; flex-shrink: 0;
+        }
+
+        /* ── HIGHLIGHT BOX ── */
+        .highlight-box {
+            background: var(--sage-light);
+            border-left: 3px solid var(--sage);
+            border-radius: 0 12px 12px 0;
+            padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--sage-dark);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* ── COMPARISON TABLE ── */
+        .compare-table {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--sage-mid);
+            margin: 1.5rem 0;
+        }
+
+        .compare-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            background: var(--sage-deep);
+            padding: 0.75rem 1rem;
+        }
+
+        .compare-header span {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--sage-mid);
+            text-align: center;
+        }
+
+        .compare-header span:first-child { text-align: left; }
+
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--sage-light);
+            background: white;
+            align-items: center;
+        }
+
+        .compare-row:last-child { border-bottom: none; }
+        .compare-row:nth-child(odd) { background: var(--cream); }
+
+        .compare-row span {
+            font-size: 0.82rem;
+            color: #4a4a4a;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .compare-row span:first-child {
+            text-align: left;
+            font-weight: 400;
+            color: var(--ink);
+        }
+
+        .compare-row .good { color: var(--sage); font-weight: 500; }
+        .compare-row .bad  { color: #ef4444; }
+
+        /* ── CTA BOX ── */
+        .cta-box {
+            background: var(--sage-deep);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin: 2.5rem 0;
+        }
+
+        .cta-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: white; margin-bottom: 0.75rem;
+        }
+
+        .cta-box p {
+            font-size: 0.88rem; color: var(--sage-mid);
+            font-weight: 300; margin-bottom: 1.5rem; line-height: 1.55;
+        }
+
+        .cta-box a {
+            display: inline-block;
+            background: white; color: var(--sage-deep);
+            padding: 0.9rem 2rem; border-radius: 12px;
+            font-size: 0.92rem; font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--sage-deep);
+            padding: 2rem 1.75rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; color: var(--sage-mid);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex; justify-content: center;
+            gap: 1.25rem; margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--sage-mid); text-decoration: none;
+            font-size: 0.78rem; font-weight: 300;
+        }
+
+        .footer-copy {
+            font-size: 0.7rem; color: #3d6b4f;
+        }
+
+        /* ── READ TIME TAG ── */
+        .read-time {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            background: white; border: 1px solid var(--sage-mid);
+            padding: 0.25rem 0.65rem; border-radius: 100px;
+            font-size: 0.72rem; color: var(--stone); font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+    <a href="index.html#preise" class="nav-cta">Jetzt testen</a>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<div class="article-header">
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Zurück zur Startseite</a>
+    <div class="article-category"><i class="fas fa-circle" style="font-size:0.4rem;"></i> Ratgeber</div>
+    <h1>Hausnotruf ohne Gerät —<br>die <em>moderne Alternative</em><br>für Ihre Familie</h1>
+    <div class="article-meta">
+        <span><i class="fas fa-calendar"></i> April 2026</span>
+        <span><i class="fas fa-clock"></i> 5 Minuten Lesezeit</span>
+        <span><i class="fas fa-user"></i> SilverGuard Redaktion</span>
+    </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+    <p>
+        Ihr Vater wohnt alleine. Ihre Mutter lebt in einer anderen Stadt. Sie machen sich jeden Morgen Sorgen — ist alles in Ordnung? Hat sie gut geschlafen? Ist er aufgestanden?
+    </p>
+
+    <p>
+        Der klassische Hausnotruf klingt nach der Lösung. Aber dann kommt die Ernüchterung: <strong>30 bis 60 Euro pro Monat</strong>, ein extra Gerät das installiert werden muss, ein Techniker der ins Haus kommen soll — und ein Vertrag über 12 Monate. Und dann trägt Mama das Gerät sowieso nicht.
+    </p>
+
+    <div class="highlight-box">
+        <p>"Mein Vater hat das Gerät nach drei Tagen in die Schublade gelegt. Er wollte sich nicht wie ein Patient fühlen." — Thomas R., 47 Jahre</p>
+    </div>
+
+    <h2>Was ist ein digitaler Hausnotruf?</h2>
+
+    <p>
+        Ein digitaler Hausnotruf funktioniert ohne jedes extra Gerät. Statt einem Knopf um den Hals gibt es jeden Morgen eine einfache SMS auf das Handy Ihrer Liebsten. Ein Klick — und Sie wissen: alles gut.
+    </p>
+
+    <p>
+        Bleibt die Antwort aus, schlägt das System automatisch Alarm. Sie werden per Anruf benachrichtigt, bevor Sie überhaupt Zeit haben sich zu sorgen.
+    </p>
+
+    <h2>Klassischer vs. digitaler Hausnotruf im Vergleich</h2>
+
+    <div class="compare-table">
+        <div class="compare-header">
+            <span>Kriterium</span>
+            <span>Klassisch</span>
+            <span>SilverGuard</span>
+        </div>
+        <div class="compare-row">
+            <span>Preis pro Monat</span>
+            <span class="bad">30–60 €</span>
+            <span class="good">ab 9,90 €</span>
+        </div>
+        <div class="compare-row">
+            <span>Extra Gerät nötig</span>
+            <span class="bad">Ja</span>
+            <span class="good">Nein</span>
+        </div>
+        <div class="compare-row">
+            <span>Installation</span>
+            <span class="bad">Techniker nötig</span>
+            <span class="good">2 Minuten selbst</span>
+        </div>
+        <div class="compare-row">
+            <span>Vertragsbindung</span>
+            <span class="bad">12+ Monate</span>
+            <span class="good">Täglich kündbar</span>
+        </div>
+        <div class="compare-row">
+            <span>Smartphone nötig</span>
+            <span class="bad">Oft ja</span>
+            <span class="good">Nein — jedes Handy</span>
+        </div>
+        <div class="compare-row">
+            <span>Aktive Nutzung</span>
+            <span class="bad">Knopf tragen</span>
+            <span class="good">Nur 1 Klick täglich</span>
+        </div>
+    </div>
+
+    <h2>Für wen ist der digitale Hausnotruf geeignet?</h2>
+
+    <p>SilverGuard ist die richtige Wahl wenn:</p>
+
+    <ul>
+        <li><i class="fas fa-check"></i> Ihre Liebsten leben selbstständig aber Sie machen sich täglich Sorgen</li>
+        <li><i class="fas fa-check"></i> Der klassische Hausnotruf zu teuer oder zu kompliziert ist</li>
+        <li><i class="fas fa-check"></i> Ihre Liebsten möchten kein Gerät tragen</li>
+        <li><i class="fas fa-check"></i> Sie mehrere Familienmitglieder gleichzeitig informieren möchten</li>
+        <li><i class="fas fa-check"></i> Sie keine langfristige Vertragsbindung eingehen möchten</li>
+        <li><i class="fas fa-check"></i> Sie schon lange darüber nachdenken — aber noch keinen einfachen Weg gefunden haben</li>
+    </ul>
+
+    <h2>So funktioniert der tägliche Check-in</h2>
+
+    <p>
+        Jeden Morgen zur gewünschten Uhrzeit — zum Beispiel 8:30 Uhr — bekommt Ihre Mutter oder Ihr Vater eine kurze SMS:
+    </p>
+
+    <div style="background:#1a3a27;border-radius:16px;padding:1.25rem 1.5rem;margin:1.25rem 0;">
+        <p style="color:#c2d9c9;font-size:0.85rem;font-family:monospace;margin:0;line-height:1.6;">
+            "Guten Morgen Hildegard! 🌿<br>
+            Bitte klicken Sie hier um zu bestätigen,<br>
+            dass es Ihnen gut geht:<br>
+            → silver-guard.de/ok?id=xxxxx"
+        </p>
+    </div>
+
+    <p>
+        Ein einziger Klick genügt. Keine App, kein Passwort, keine Technik. Das Handy muss nicht mal ein Smartphone sein — jedes alte Nokia reicht.
+    </p>
+
+    <h3>Was passiert wenn niemand antwortet?</h3>
+
+    <p>
+        Bleibt die Antwort aus, sendet das System nach zwei Stunden eine Erinnerungs-SMS. Kommt auch darauf keine Antwort, werden Sie automatisch per Anruf benachrichtigt — ohne dass Sie etwas tun müssen.
+    </p>
+
+    <h2>Datenschutz und DSGVO</h2>
+
+    <p>
+        Alle Daten werden ausschließlich auf <strong>Servern in Deutschland</strong> gespeichert und verarbeitet. SilverGuard ist vollständig DSGVO-konform. Standortdaten werden nur im Notfall-Szenario und nur mit Einverständnis Ihrer Liebsten übermittelt.
+    </p>
+
+    <h2>Was kostet der digitale Hausnotruf?</h2>
+
+    <p>
+        SilverGuard bietet zwei Tarife — beide ohne Vertrag, täglich kündbar:
+    </p>
+
+    <ul>
+        <li><i class="fas fa-check"></i> <strong>Basis-Fürsorge:</strong> 9,90 € pro Monat — täglicher SMS-Check-in, Benachrichtigung bei Ausbleiben</li>
+        <li><i class="fas fa-check"></i> <strong>Familien-Fürsorge AI:</strong> 19,90 € pro Monat — zusätzlich KI-Anruf, Standort-Link im Notfall, bis zu 3 Angehörige</li>
+    </ul>
+
+    <p>
+        Zum Vergleich: der günstigste klassische Hausnotruf kostet mindestens 25–30 € pro Monat — <strong>zuzüglich Einrichtungsgebühr und Mindestlaufzeit.</strong>
+    </p>
+
+    <!-- CTA -->
+    <div class="cta-box">
+        <h3>Jetzt kostenlos testen</h3>
+        <p>Starten Sie heute mit dem digitalen Hausnotruf.<br>Kein Vertrag · Kein Gerät · Ab 9,90 € / Monat</p>
+        <a href="index.html#preise">Tarif wählen</a>
+    </div>
+
+    <h2>Häufige Fragen</h2>
+
+    <h3>Braucht meine Mutter ein Smartphone?</h3>
+    <p>Nein. SilverGuard funktioniert mit jedem Mobiltelefon das SMS empfangen kann — auch mit alten Tastentelefonen.</p>
+
+    <h3>Was ist wenn meine Mutter die SMS vergisst?</h3>
+    <p>Das System sendet nach zwei Stunden automatisch eine Erinnerung. Erst wenn auch diese ignoriert wird erfolgt der Alarm an Sie.</p>
+
+    <h3>Kann ich jederzeit kündigen?</h3>
+    <p>Ja. Es gibt weder Mindestlaufzeit noch Kündigungsfristen. Sie deaktivieren den Dienst einfach in Ihrem Kundenkonto.</p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">SilverGuard AI</div>
+    <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="index.html#preise">Preise</a>
+        <a href="login.html">Mein Konto</a>
+    </div>
+    <div class="footer-copy">© 2026 Silver-Guard.de — Made for your family.</div>
+</footer>
+
+</body>
+</html>

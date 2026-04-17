@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverGuard – Anmelden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage:       #4a7c59;
+            --sage-dark:  #2d5a3d;
+            --sage-deep:  #1a3a27;
+            --sage-light: #e8f0eb;
+            --sage-mid:   #c2d9c9;
+            --cream:      #faf8f4;
+            --warm-white: #f5f2ec;
+            --stone:      #8a7f74;
+            --ink:        #1c1c1c;
+            --gold:       #c9a84c;
+            --red:        #dc2626;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--warm-white);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── TOP BAR ── */
+        .topbar {
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--sage-deep);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 30px; height: 30px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem;
+        }
+
+        .back-link {
+            font-size: 0.82rem;
+            color: var(--stone);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 300;
+        }
+
+        .back-link:hover { color: var(--sage); }
+
+        /* ── MAIN ── */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.75rem 4rem;
+        }
+
+        /* ── DECORATIVE RING ── */
+        .deco-ring {
+            position: fixed;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            border: 50px solid var(--sage-light);
+            bottom: -100px; right: -100px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* ── CARD ── */
+        .login-card {
+            width: 100%;
+            max-width: 380px;
+            animation: fadeUp 0.45s ease both;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-header .shield {
+            width: 60px; height: 60px;
+            background: var(--sage-deep);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.4rem;
+            color: white;
+            box-shadow: 0 8px 24px rgba(26,58,39,0.2);
+        }
+
+        .card-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--sage-deep);
+            margin-bottom: 0.4rem;
+        }
+
+        .card-header p {
+            font-size: 0.88rem;
+            color: var(--stone);
+            font-weight: 300;
+        }
+
+        /* ── FORM ── */
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.75rem;
+            border: 1px solid var(--sage-mid);
+            box-shadow: 0 4px 24px rgba(26,58,39,0.06);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--sage-dark);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sage-mid);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.75rem;
+            border: 1.5px solid var(--sage-mid);
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--ink);
+            background: var(--cream);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(74,124,89,0.12);
+            background: white;
+        }
+
+        .form-input::placeholder {
+            color: var(--sage-mid);
+            font-weight: 300;
+        }
+
+        /* Password toggle */
+        .pw-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sage-mid);
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .pw-toggle:hover { color: var(--sage); }
+
+        /* Forgot password */
+        .forgot {
+            text-align: right;
+            margin-top: 0.4rem;
+        }
+
+        .forgot a {
+            font-size: 0.78rem;
+            color: var(--sage);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        /* Error message */
+        .error-msg {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 0.82rem;
+            color: var(--red);
+            margin-bottom: 1.25rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .error-msg.show { display: flex; }
+
+        /* Submit button */
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: var(--sage-deep);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            margin-top: 0.5rem;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(26,58,39,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-login:hover {
+            background: var(--sage);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(26,58,39,0.22);
+        }
+
+        .btn-login:active { transform: translateY(0); }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 1.25rem 0;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+
+        .divider span {
+            font-size: 0.75rem;
+            color: var(--sage-mid);
+            font-weight: 300;
+        }
+
+        /* ── REGISTER LINK ── */
+        .register-link {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--stone);
+            font-weight: 300;
+            margin-top: 1.25rem;
+        }
+
+        .register-link a {
+            color: var(--sage-dark);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .register-link a:hover { text-decoration: underline; }
+
+        /* ── TRUST FOOTER ── */
+        .trust-footer {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            color: var(--stone);
+            font-weight: 300;
+        }
+
+        .trust-item i { color: var(--sage); font-size: 0.65rem; }
+
+        /* ── ANIMATION ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="deco-ring"></div>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+            SilverGuard
+        </a>
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Zurück
+        </a>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+        <div class="login-card">
+
+            <!-- HEADER -->
+            <div class="card-header">
+                <div class="shield"><i class="fas fa-shield-heart"></i></div>
+                <h1>Willkommen zurück</h1>
+                <p>Melden Sie sich an um das Dashboard zu öffnen</p>
+            </div>
+
+            <!-- FORM -->
+            <div class="form-card">
+
+                <!-- Error -->
+                <div class="error-msg" id="errorMsg">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <span>E-Mail oder Passwort ist falsch.</span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label">E-Mail-Adresse</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-envelope"></i>
+                        <input
+                            type="email"
+                            class="form-input"
+                            id="emailInput"
+                            placeholder="ihre@email.de"
+                            autocomplete="email"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="form-label">Passwort</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-lock"></i>
+                        <input
+                            type="password"
+                            class="form-input"
+                            id="pwInput"
+                            placeholder="••••••••"
+                            autocomplete="current-password"
+                        >
+                        <button class="pw-toggle" onclick="togglePw()" type="button" id="pwToggle">
+                            <i class="fas fa-eye" id="pwIcon"></i>
+                        </button>
+                    </div>
+                    <div class="forgot">
+                        <a href="#" onclick="alert('Passwort zurücksetzen: Funktion folgt bald.')">Passwort vergessen?</a>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button class="btn-login" onclick="handleLogin()" id="loginBtn">
+                    <span id="btnText">Anmelden</span>
+                    <div class="spinner" id="spinner"></div>
+                </button>
+
+                <div class="divider"><span>neu hier?</span></div>
+
+                <div class="register-link">
+                    Noch kein Konto?
+                    <a href="index.html#preise">Jetzt registrieren</a>
+                </div>
+
+            </div>
+
+            <!-- TRUST -->
+            <div class="trust-footer">
+                <div class="trust-item"><i class="fas fa-lock"></i> SSL-verschlüsselt</div>
+                <div class="trust-item"><i class="fas fa-server"></i> Server in Deutschland</div>
+                <div class="trust-item"><i class="fas fa-shield-halved"></i> DSGVO-konform</div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function togglePw() {
+            const input = document.getElementById('pwInput');
+            const icon = document.getElementById('pwIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('emailInput').value;
+            const pw = document.getElementById('pwInput').value;
+            const btn = document.getElementById('loginBtn');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+            const errorMsg = document.getElementById('errorMsg');
+
+            // Hide error
+            errorMsg.classList.remove('show');
+
+            // Validate
+            if (!email || !pw) {
+                errorMsg.querySelector('span').textContent = 'Bitte E-Mail und Passwort eingeben.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            // Show loading
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            btnText.textContent = 'Wird geprüft …';
+
+            // Simulate login — replace with real auth later
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                btnText.textContent = 'Anmelden';
+                btn.disabled = false;
+
+                // Demo: any email/pw works → redirect to dashboard
+                window.location.href = 'dashboard.html';
+
+                // In production: check credentials via backend
+                // If wrong: errorMsg.classList.add('show');
+            }, 1500);
+        }
+
+        // Allow Enter key to submit
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+    </script>
+
+</body>
+</html>

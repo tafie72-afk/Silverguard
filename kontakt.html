@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt – SilverGuard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #4a7c59; --sage-dark: #2d5a3d; --sage-deep: #1a3a27;
+            --sage-light: #e8f0eb; --sage-mid: #c2d9c9;
+            --cream: #faf8f4; --warm-white: #f5f2ec;
+            --stone: #8a7f74; --ink: #1c1c1c; --gold: #c9a84c;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--ink); }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.75rem;
+            background: rgba(250,248,244,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sage-mid);
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700; color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .logo-icon {
+            width: 30px; height: 30px; background: var(--sage); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem;
+        }
+        .back-link {
+            font-size: 0.82rem; color: var(--stone); text-decoration: none;
+            font-weight: 300; display: flex; align-items: center; gap: 0.4rem;
+        }
+        main { padding: 2rem 1.75rem 4rem; }
+        .section-label {
+            font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem;
+        }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem; font-weight: 700; color: var(--sage-deep);
+            line-height: 1.2; margin-bottom: 0.75rem;
+        }
+        .intro {
+            font-size: 0.92rem; color: var(--stone); font-weight: 300;
+            line-height: 1.6; margin-bottom: 2rem;
+        }
+        /* CONTACT OPTIONS */
+        .contact-options {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
+            margin-bottom: 2rem;
+        }
+        .contact-option {
+            background: white; border: 1px solid var(--sage-mid);
+            border-radius: 16px; padding: 1.1rem; text-align: center;
+        }
+        .contact-option i {
+            font-size: 1.2rem; color: var(--sage); margin-bottom: 0.5rem; display: block;
+        }
+        .contact-option h4 {
+            font-size: 0.82rem; font-weight: 500; color: var(--sage-deep);
+            margin-bottom: 0.2rem;
+        }
+        .contact-option p {
+            font-size: 0.72rem; color: var(--stone); font-weight: 300; line-height: 1.4;
+        }
+        /* FORM */
+        .form-card {
+            background: white; border: 1px solid var(--sage-mid);
+            border-radius: 20px; padding: 1.5rem; margin-bottom: 1.5rem;
+        }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-label {
+            display: block; font-size: 0.78rem; font-weight: 500;
+            color: var(--sage-dark); letter-spacing: 0.04em;
+            text-transform: uppercase; margin-bottom: 0.45rem;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap i {
+            position: absolute; left: 1rem; top: 50%;
+            transform: translateY(-50%); color: var(--sage-mid); font-size: 0.85rem;
+        }
+        .form-input {
+            width: 100%; padding: 0.85rem 1rem 0.85rem 2.75rem;
+            border: 1.5px solid var(--sage-mid); border-radius: 12px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+            font-weight: 300; color: var(--ink); background: var(--cream);
+            outline: none; -webkit-appearance: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-input:focus {
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(74,124,89,0.12); background: white;
+        }
+        textarea.form-input {
+            padding-top: 0.85rem; resize: none; height: 120px;
+            vertical-align: top;
+        }
+        .btn-send {
+            width: 100%; padding: 1.1rem; background: var(--sage-deep); color: white;
+            border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem; font-weight: 500; cursor: pointer;
+            box-shadow: 0 4px 16px rgba(26,58,39,0.18);
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-send:hover { background: var(--sage); transform: translateY(-1px); }
+        /* SUCCESS */
+        .success-msg {
+            display: none; background: var(--sage-light);
+            border: 1px solid var(--sage-mid); border-radius: 14px;
+            padding: 1.25rem; text-align: center; margin-top: 1rem;
+        }
+        .success-msg.show { display: block; }
+        .success-msg p { font-size: 0.88rem; color: var(--sage-dark); font-weight: 300; }
+        /* FAQ TEASER */
+        .faq-teaser {
+            background: var(--sage-deep); border-radius: 18px;
+            padding: 1.5rem; text-align: center;
+        }
+        .faq-teaser h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 0.5rem;
+        }
+        .faq-teaser p {
+            font-size: 0.82rem; color: var(--sage-mid);
+            font-weight: 300; margin-bottom: 1rem;
+        }
+        .faq-teaser a {
+            display: inline-block; background: white; color: var(--sage-deep);
+            padding: 0.65rem 1.5rem; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 500; text-decoration: none;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        main > * { animation: fadeUp 0.4s ease both; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+            SilverGuard
+        </a>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Zurück</a>
+    </nav>
+
+    <main>
+        <div class="section-label">Kontakt</div>
+        <h1>Wie können<br>wir helfen?</h1>
+        <p class="intro">Wir antworten in der Regel innerhalb von 24 Stunden — werktags oft noch am selben Tag.</p>
+
+        <div class="contact-options">
+            <div class="contact-option">
+                <i class="fas fa-envelope"></i>
+                <h4>E-Mail</h4>
+                <p><a href="mailto:info@silver-guard.de" style="color:var(--sage);text-decoration:none;">info@silver-guard.de</a></p>
+            </div>
+            <div class="contact-option">
+                <i class="fas fa-clock"></i>
+                <h4>Antwortzeit</h4>
+                <p>Werktags innerhalb 24h</p>
+            </div>
+            <div class="contact-option">
+                <i class="fas fa-shield-halved"></i>
+                <h4>Datenschutz</h4>
+                <p>DSGVO-konform</p>
+            </div>
+            <div class="contact-option">
+                <i class="fas fa-language"></i>
+                <h4>Sprache</h4>
+                <p>Deutsch & Englisch</p>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-group">
+                <label class="form-label">Ihr Name</label>
+                <div class="input-wrap">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-input" id="c-name" placeholder="Vorname Nachname">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">E-Mail-Adresse</label>
+                <div class="input-wrap">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" class="form-input" id="c-email" placeholder="ihre@email.de">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Betreff</label>
+                <div class="input-wrap">
+                    <i class="fas fa-tag"></i>
+                    <select class="form-input" id="c-betreff" style="padding-left:2.75rem;">
+                        <option>Allgemeine Frage</option>
+                        <option>Technisches Problem</option>
+                        <option>Abonnement & Zahlung</option>
+                        <option>Konto löschen</option>
+                        <option>Sonstiges</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Ihre Nachricht</label>
+                <div class="input-wrap">
+                    <textarea class="form-input" id="c-nachricht" placeholder="Wie können wir Ihnen helfen?" style="padding-left:1rem;"></textarea>
+                </div>
+            </div>
+            <button class="btn-send" onclick="sendContact()">
+                <i class="fas fa-paper-plane"></i> Nachricht senden
+            </button>
+            <div class="success-msg" id="successMsg">
+                <p>✓ Vielen Dank! Ihre Nachricht wurde gesendet. Wir melden uns innerhalb von 24 Stunden.</p>
+            </div>
+        </div>
+
+        <div class="faq-teaser">
+            <h3>Schnelle Antworten?</h3>
+            <p>Viele Fragen sind bereits in unserem FAQ beantwortet.</p>
+            <a href="index.html#faq">FAQ ansehen</a>
+        </div>
+    </main>
+
+    <script>
+        function sendContact() {
+            const name = document.getElementById('c-name').value;
+            const email = document.getElementById('c-email').value;
+            const msg = document.getElementById('c-nachricht').value;
+            if (!name || !email || !msg) {
+                alert('Bitte alle Felder ausfüllen.');
+                return;
+            }
+            // In production: send to backend / Make.com webhook
+            document.getElementById('successMsg').classList.add('show');
+        }
+    </script>
+</body>
+</html>

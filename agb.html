@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGB – SilverGuard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #4a7c59; --sage-dark: #2d5a3d; --sage-deep: #1a3a27;
+            --sage-light: #e8f0eb; --sage-mid: #c2d9c9;
+            --cream: #faf8f4; --warm-white: #f5f2ec;
+            --stone: #8a7f74; --ink: #1c1c1c; --gold: #c9a84c;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--ink); }
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.75rem;
+            background: rgba(250,248,244,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sage-mid);
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700; color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .logo-icon {
+            width: 30px; height: 30px; background: var(--sage); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem;
+        }
+        .back-link {
+            font-size: 0.82rem; color: var(--stone); text-decoration: none;
+            font-weight: 300; display: flex; align-items: center; gap: 0.4rem;
+        }
+        main { padding: 2rem 1.75rem 4rem; max-width: 680px; }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 700; color: var(--sage-deep); margin-bottom: 0.5rem;
+        }
+        .meta { font-size: 0.75rem; color: var(--stone); font-weight: 300; margin-bottom: 2rem; line-height: 1.6; }
+        .warning-box {
+            background: #fff3cd; border: 1.5px dashed var(--gold);
+            border-radius: 14px; padding: 1.25rem; margin-bottom: 2rem;
+        }
+        .warning-box h4 { font-size: 0.82rem; font-weight: 600; color: #92400e; margin-bottom: 0.4rem; }
+        .warning-box p { font-size: 0.78rem; color: #92400e; font-weight: 300; line-height: 1.6; }
+        .toc { background: var(--sage-light); border-radius: 14px; padding: 1.25rem; margin-bottom: 2rem; }
+        .toc h4 { font-size: 0.78rem; font-weight: 600; color: var(--sage-dark); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.75rem; }
+        .toc a { display: block; font-size: 0.82rem; color: var(--sage-dark); text-decoration: none; font-weight: 300; padding: 0.2rem 0; line-height: 1.5; }
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 600; color: var(--sage-deep);
+            margin: 2.5rem 0 0.75rem; padding-top: 0.5rem;
+            border-top: 1px solid var(--sage-light);
+        }
+        h3 { font-size: 0.9rem; font-weight: 500; color: var(--sage-dark); margin: 1.25rem 0 0.4rem; }
+        p { font-size: 0.88rem; color: #3a3a3a; line-height: 1.75; font-weight: 300; margin-bottom: 0.75rem; }
+        ul, ol { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+        li { font-size: 0.88rem; color: #3a3a3a; line-height: 1.7; font-weight: 300; margin-bottom: 0.3rem; }
+        .placeholder {
+            background: #fff3cd; border: 1px dashed var(--gold);
+            padding: 0.1rem 0.4rem; border-radius: 4px;
+            font-size: 0.82rem; color: #92400e; font-style: italic;
+        }
+        .important-box {
+            background: var(--sage-light); border-left: 3px solid var(--sage);
+            border-radius: 0 12px 12px 0; padding: 1rem 1.25rem; margin: 1rem 0;
+        }
+        .important-box p { margin: 0; color: var(--sage-dark); font-size: 0.85rem; }
+        .notfall-box {
+            background: #fee2e2; border: 1.5px solid #fca5a5;
+            border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0;
+        }
+        .notfall-box p { margin: 0; color: #991b1b; font-size: 0.85rem; font-weight: 400; }
+        footer { background: var(--sage-deep); padding: 2rem 1.75rem; text-align: center; }
+        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--sage-mid); margin-bottom: 1rem; }
+        .footer-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--sage-mid); text-decoration: none; font-size: 0.78rem; font-weight: 300; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Zurück</a>
+</nav>
+
+<main>
+    <h1>Allgemeine Geschäftsbedingungen</h1>
+    <div class="meta">Stand: April 2026 · Version 1.0<br>Anbieter: <span class="placeholder">Tanja Fiestelmann</span>, <span class="placeholder">Steiner Weg 53, 90449 Nürnberg</span></div>
+
+    <div class="warning-box">
+        <h4>Wichtiger Hinweis</h4>
+        <p>Diese AGB sind eine rechtliche Vorlage und wurden nicht von einem Rechtsanwalt geprueft. Vor der Veroeffentlichung ist eine anwaltliche Pruefung dringend empfohlen. Gelb markierte Felder muessen durch Ihre echten Daten ersetzt werden.</p>
+    </div>
+
+    <div class="toc">
+        <h4>Inhaltsverzeichnis</h4>
+        <a href="#s1">§ 1 Geltungsbereich und Anbieter</a>
+        <a href="#s2">§ 2 Leistungsbeschreibung</a>
+        <a href="#s3">§ 3 Vertragsschluss und Registrierung</a>
+        <a href="#s4">§ 4 Preise, Zahlung und Abrechnung</a>
+        <a href="#s5">§ 5 Laufzeit und Kuendigung</a>
+        <a href="#s6">§ 6 Widerrufsrecht</a>
+        <a href="#s7">§ 7 Einverstaendnis der betreuten Person</a>
+        <a href="#s8">§ 8 Standort-Link und GPS-Funktion</a>
+        <a href="#s9">§ 9 Keine Notfallersatzfunktion</a>
+        <a href="#s10">§ 10 Verfuegbarkeit und technische Ausfaelle</a>
+        <a href="#s11">§ 11 Haftungsbeschraenkung</a>
+        <a href="#s12">§ 12 Tod der betreuten Person</a>
+        <a href="#s13">§ 13 Urlaubs- und Pausierungsfunktion</a>
+        <a href="#s14">§ 14 Datenschutz und DSGVO</a>
+        <a href="#s15">§ 15 Empfehlungsprogramm</a>
+        <a href="#s16">§ 16 Aenderungen der AGB</a>
+        <a href="#s17">§ 17 Schlussbestimmungen</a>
+    </div>
+
+    <h2 id="s1">§ 1 Geltungsbereich und Anbieter</h2>
+    <p>Diese AGB regeln die Nutzung des digitalen Fuersorge-Dienstes SilverGuard, angeboten unter silver-guard.de durch: <span class="placeholder">Tanja Fiestelmann</span>, <span class="placeholder">Steiner Weg 53</span>, <span class="placeholder">90449 Nürnberg</span>, E-Mail: <span class="placeholder">info@silver-guard.de</span> (nachfolgend "Anbieter").</p>
+    <p>Abweichende AGB des Kunden werden nicht Vertragsbestandteil.</p>
+
+    <h2 id="s2">§ 2 Leistungsbeschreibung</h2>
+    <p>SilverGuard ist ein digitaler Fuersorgedienst der automatisierte Check-in-Nachrichten per SMS an Senioren sendet und bei ausbleibender Antwort hinterlegte Angehoerige benachrichtigt.</p>
+    <h3>2.1 Basis-Fuersorge (9,90 EUR/Monat)</h3>
+    <ul>
+        <li>Taeglicher Morgen-Check-in per SMS an eine betreute Person</li>
+        <li>Bestaetigungs-E-Mail bei erfolgreicher Antwort</li>
+        <li>Automatische Erinnerungs-SMS bei ausbleibender Antwort</li>
+        <li>Alarm-Benachrichtigung bei dauerhaft ausbleibender Antwort</li>
+    </ul>
+    <h3>2.2 Familien-Fuersorge (14,90 EUR/Monat)</h3>
+    <ul>
+        <li>Alle Leistungen aus Basis-Fuersorge</li>
+        <li>Zusaetzlicher Abend-Check-in per SMS</li>
+        <li>Automatischer KI-Anruf bei ausbleibender Antwort</li>
+        <li>Optionaler Standort-Link im Notfall (freiwillig, siehe § 8)</li>
+        <li>Notfallkontakt-Kette: automatische Benachrichtigung eines zweiten Kontakts</li>
+        <li>Bis zu 3 betreute Personen</li>
+    </ul>
+    <h3>2.3 Fuersorge AI Premium (19,90 EUR/Monat)</h3>
+    <ul>
+        <li>Alle Leistungen aus Familien-Fuersorge</li>
+        <li>Taegliche Wohlbefindens-Fragen mit Auswertung</li>
+        <li>Woechentlicher Bericht per E-Mail</li>
+        <li>Automatische Wetter-Hinweise bei Extremwetter</li>
+        <li>Persoenliche Begruessung mit Namen</li>
+        <li>Geburtstags- und Feiertagsnachrichten</li>
+        <li>Bis zu 5 betreute Personen</li>
+        <li>Priorisierter Support</li>
+    </ul>
+
+    <h2 id="s3">§ 3 Vertragsschluss und Registrierung</h2>
+    <p>Der Vertrag kommt durch die vollstaendige Registrierung auf silver-guard.de und die Bestaetigungs-E-Mail zustande. Der Kunde muss mindestens 18 Jahre alt sein. Der Kunde ist verpflichtet, wahrheitsgemaesse Angaben zu machen. Pro Person ist nur ein Konto zulaessig.</p>
+
+    <h2 id="s4">§ 4 Preise, Zahlung und Abrechnung</h2>
+    <p>Alle Preise verstehen sich als Bruttopreise inklusive gesetzlicher Mehrwertsteuer. Die Abrechnung erfolgt monatlich im Voraus ueber den Zahlungsdienstleister Stripe per Kreditkarte oder SEPA-Lastschrift. Bei Zahlungsverzug kann der Dienst gesperrt werden. Preiserhoehungen werden 30 Tage vorab per E-Mail mitgeteilt mit Sonderkuendigungsrecht.</p>
+
+    <h2 id="s5">§ 5 Laufzeit und Kuendigung</h2>
+    <p>Der Vertrag wird auf unbestimmte Zeit geschlossen und ist taeglich kuendbar ohne Mindestlaufzeit oder Kuendigungsfristen. Die Kuendigung erfolgt ueber das Kundenkonto oder per E-Mail an <span class="placeholder">info@silver-guard.de</span>. Nach Kuendigung wird der Dienst zum Ende des aktuellen Tages deaktiviert. Bereits bezahlte Betraege werden nicht anteilig erstattet. Der Anbieter kann aus wichtigem Grund fristlos kuendigen.</p>
+
+    <h2 id="s6">§ 6 Widerrufsrecht</h2>
+    <p>Verbraucher haben das Recht, binnen 14 Tagen ohne Angabe von Gruenden diesen Vertrag zu widerrufen. Der Widerruf ist per E-Mail an <span class="placeholder">info@silver-guard.de</span> zu richten.</p>
+    <div class="important-box">
+        <p><strong>Hinweis:</strong> Wenn Sie verlangen dass die Dienstleistung vor Ablauf der Widerrufsfrist beginnt und vollstaendig erbracht wurde, verlieren Sie Ihr Widerrufsrecht. Bei teilweiser Erbringung haben Sie Anspruch auf anteilige Erstattung.</p>
+    </div>
+
+    <h2 id="s7">§ 7 Einverstaendnis der betreuten Person</h2>
+    <p>Der Kunde versichert ausdruecklich dass die betreute Person ueber den Dienst vollstaendig informiert wurde und einverstanden ist mit: dem taeglichen SMS-Empfang, der Weitergabe des Check-in-Status, der Verarbeitung ihrer Mobilfunknummer sowie dem optionalen Standort-Link im Notfall.</p>
+    <p>Der Anbieter uebernimmt keinerlei Haftung bei fehlendem Einverstaendnis. Der Kunde ist allein verantwortlich fuer die Einholung und Dokumentation des Einverstaendnisses.</p>
+    <p>Die betreute Person hat jederzeit das Recht auf Loeschung ihrer Daten per E-Mail an <span class="placeholder">info@silver-guard.de</span>.</p>
+
+    <h2 id="s8">§ 8 Standort-Link und GPS-Funktion</h2>
+    <p>Der Standort-Link ist vollstaendig freiwillig und wird ausschliesslich im Notfall aktiviert. Die betreute Person entscheidet selbst durch aktives Tippen ob sie den Standort teilt. Es findet keine dauerhafte Ortung statt. Standortdaten werden nicht gespeichert. Der Anbieter uebernimmt keine Gewaehr fuer die Genauigkeit der Standortdaten.</p>
+
+    <h2 id="s9">§ 9 Keine Notfallersatzfunktion</h2>
+    <div class="notfall-box">
+        <p>SilverGuard ist kein Notfalldienst. Bei medizinischen Notfaellen ist sofort der Notruf 112 zu kontaktieren. SilverGuard ersetzt keine professionelle Pflege und keine aerztliche Versorgung. Eine Garantie fuer die rechtzeitige Erkennung von Notfallsituationen kann nicht gegeben werden.</p>
+    </div>
+
+    <h2 id="s10">§ 10 Verfuegbarkeit und technische Ausfaelle</h2>
+    <p>Der Anbieter kann keine ununterbrochene Verfuegbarkeit garantieren. Fuer Ausfaelle bei Drittanbietern (Twilio, Stripe, Hosting) haftet der Anbieter nicht sofern diese ausserhalb seines Einflussbereichs liegen. Bei Ausfaellen von mehr als 48 Stunden hat der Kunde Anspruch auf anteilige Erstattung.</p>
+
+    <h2 id="s11">§ 11 Haftungsbeschraenkung</h2>
+    <p>Der Anbieter haftet unbeschraenkt fuer Schaeden aus Verletzung des Lebens, des Koerpers oder der Gesundheit sowie bei Vorsatz und grober Fahrlaessigkeit. Im Uebrigen ist die Haftung auf vorhersehbare vertragstypische Schaeden begrenzt.</p>
+    <p>Der Anbieter haftet nicht fuer Schaeden durch: Nichtnutzung des Standort-Links durch die betreute Person, SMS-Zustellungsfehler ausserhalb seines Einflussbereichs, falsche Kontaktdaten des Kunden, nicht mitgefuehrtes Handy der betreuten Person oder Missbrauch des Dienstes.</p>
+
+    <h2 id="s12">§ 12 Tod der betreuten Person</h2>
+    <p>Im Todesfall kann der Kunde oder Angehoerige die sofortige und kostenfreie Deaktivierung per E-Mail an <span class="placeholder">info@silver-guard.de</span> beantragen. Deaktivierung erfolgt innerhalb von 24 Stunden. Bereits bezahlte Betraege werden auf Anfrage anteilig erstattet. Alle Daten werden innerhalb von 30 Tagen geloescht. Der Anbieter behandelt diese Mitteilungen mit groesster Sensibilitaet.</p>
+
+    <h2 id="s13">§ 13 Urlaubs- und Pausierungsfunktion</h2>
+    <p>Der Kunde kann den Dienst jederzeit ueber das Dashboard pausieren. Waehrend der Pausierung werden keine SMS gesendet und keine Alarme ausgeloest. Die Pausierung aendert nichts an der monatlichen Abrechnung. Der Monatsbeitrag wird auch waehrend der Pausierung abgerechnet.</p>
+
+    <h2 id="s14">§ 14 Datenschutz und DSGVO</h2>
+    <p>Die Datenverarbeitung erfolgt gemaess der Datenschutzerklaerung unter silver-guard.de/datenschutz. Alle Daten werden auf Servern in Deutschland verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsdurchfuehrung). Der Kunde hat Rechte auf Auskunft, Berichtigung, Loeschung und Datenuebertragbarkeit. Nach Kuendigung werden alle Daten innerhalb von 30 Tagen geloescht.</p>
+
+    <h2 id="s15">§ 15 Empfehlungsprogramm</h2>
+    <p>Kunden erhalten einen persoenlichen Empfehlungscode. Fuer jede erfolgreiche Neuregistrierung erhaelt der Empfehlende einen Monat kostenlos. Der Anbieter kann das Programm jederzeit aendern oder einstellen. Missbrauch fuehrt zur sofortigen Sperrung.</p>
+
+    <h2 id="s16">§ 16 Aenderungen der AGB</h2>
+    <p>AGB-Aenderungen werden 30 Tage vorab per E-Mail mitgeteilt. Widerspricht der Kunde nicht innerhalb von 30 Tagen gelten die neuen AGB als angenommen. Bei Widerspruch kann der Anbieter den Vertrag kuendigen.</p>
+
+    <h2 id="s17">§ 17 Schlussbestimmungen</h2>
+    <p>Es gilt deutsches Recht. UN-Kaufrecht ist ausgeschlossen. Gerichtsstand ist <span class="placeholder">Nürnberg</span>. Sollten einzelne Bestimmungen unwirksam sein bleibt die Wirksamkeit der uebrigen Bestimmungen unberuehrt. Der Anbieter nimmt nicht an Verbraucherschlichtungsverfahren teil.</p>
+
+    <div class="important-box" style="margin-top:2rem;">
+        <p>Bei Fragen zu diesen AGB: <span class="placeholder">info@silver-guard.de</span></p>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-logo">SilverGuard AI</div>
+    <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="index.html">Datenschutz</a>
+        <a href="index.html">Impressum</a>
+    </div>
+</footer>
+
+</body>
+</html>

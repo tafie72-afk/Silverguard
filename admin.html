@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverGuard – Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage:       #4a7c59;
+            --sage-dark:  #2d5a3d;
+            --sage-deep:  #1a3a27;
+            --sage-light: #e8f0eb;
+            --sage-mid:   #c2d9c9;
+            --cream:      #faf8f4;
+            --warm-white: #f5f2ec;
+            --stone:      #8a7f74;
+            --ink:        #1c1c1c;
+            --gold:       #c9a84c;
+            --red:        #dc2626;
+            --red-soft:   #fee2e2;
+            --amber:      #f59e0b;
+            --amber-soft: #fef3c7;
+            --blue:       #3b82f6;
+            --blue-soft:  #eff6ff;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            min-height: 100vh;
+            padding-bottom: 5rem;
+        }
+
+        /* ── TOP BAR ── */
+        .topbar {
+            background: var(--sage-deep);
+            padding: 1rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 50;
+        }
+
+        .topbar-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 700; color: white;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .topbar-logo i { color: var(--sage-mid); }
+
+        .admin-badge {
+            background: var(--gold); color: var(--sage-deep);
+            font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 0.2rem 0.6rem; border-radius: 100px;
+        }
+
+        /* ── PAGE ── */
+        .page { padding: 1.5rem; }
+
+        /* ── SECTION TITLE ── */
+        .section-label {
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--sage); margin-bottom: 0.4rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 600;
+            color: var(--sage-deep); margin-bottom: 1rem;
+        }
+
+        /* ── GREETING ── */
+        .greeting {
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        .greeting .label {
+            font-size: 0.72rem; color: var(--stone);
+            font-weight: 300; letter-spacing: 0.05em;
+            text-transform: uppercase; margin-bottom: 0.2rem;
+        }
+
+        .greeting h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; font-weight: 700;
+            color: var(--sage-deep); line-height: 1.2;
+        }
+
+        /* ── KPI GRID ── */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.4s 0.1s ease both;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 1px solid var(--sage-mid);
+            border-radius: 16px;
+            padding: 1.1rem;
+        }
+
+        .kpi-card.highlight {
+            background: var(--sage-deep);
+            border: none;
+        }
+
+        .kpi-icon {
+            font-size: 1rem; margin-bottom: 0.5rem;
+        }
+
+        .kpi-card:not(.highlight) .kpi-icon { color: var(--sage); }
+        .kpi-card.highlight .kpi-icon { color: var(--sage-mid); }
+
+        .kpi-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 700; line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .kpi-card:not(.highlight) .kpi-num { color: var(--sage-deep); }
+        .kpi-card.highlight .kpi-num { color: white; }
+
+        .kpi-label {
+            font-size: 0.72rem; font-weight: 300;
+        }
+
+        .kpi-card:not(.highlight) .kpi-label { color: var(--stone); }
+        .kpi-card.highlight .kpi-label { color: var(--sage-mid); }
+
+        .kpi-trend {
+            font-size: 0.68rem; font-weight: 500;
+            margin-top: 0.3rem;
+        }
+
+        .kpi-trend.up { color: var(--sage); }
+        .kpi-trend.down { color: var(--red); }
+        .kpi-trend.neutral { color: var(--stone); }
+
+        /* ── ALARM CARD ── */
+        .alarm-card {
+            background: var(--red-soft);
+            border: 1.5px solid #fca5a5;
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.4s 0.2s ease both;
+        }
+
+        .alarm-header {
+            display: flex; align-items: center; gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .alarm-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%; background: var(--red);
+            animation: blink 1.5s ease infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .alarm-title {
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--red);
+        }
+
+        .alarm-item {
+            background: white;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.5rem;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+
+        .alarm-item:last-child { margin-bottom: 0; }
+
+        .alarm-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--red-soft);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem; font-weight: 600; color: var(--red);
+            flex-shrink: 0;
+        }
+
+        .alarm-info { flex: 1; }
+
+        .alarm-name {
+            font-size: 0.85rem; font-weight: 500; color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+
+        .alarm-detail {
+            font-size: 0.72rem; color: var(--stone); font-weight: 300;
+        }
+
+        .alarm-time {
+            font-size: 0.72rem; color: var(--red); font-weight: 500;
+        }
+
+        /* ── REVENUE CARD ── */
+        .revenue-card {
+            background: white;
+            border: 1px solid var(--sage-mid);
+            border-radius: 18px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.4s 0.3s ease both;
+        }
+
+        .revenue-big {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem; font-weight: 700;
+            color: var(--sage-deep); line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .revenue-label {
+            font-size: 0.78rem; color: var(--stone);
+            font-weight: 300; margin-bottom: 1.25rem;
+        }
+
+        .revenue-bar-wrap {
+            margin-bottom: 0.5rem;
+        }
+
+        .revenue-bar-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.75rem; margin-bottom: 0.3rem;
+        }
+
+        .revenue-bar-label .name { color: var(--stone); font-weight: 300; }
+        .revenue-bar-label .val  { color: var(--sage-dark); font-weight: 500; }
+
+        .revenue-bar {
+            height: 8px; background: var(--sage-light);
+            border-radius: 100px; overflow: hidden;
+        }
+
+        .revenue-bar-fill {
+            height: 100%; border-radius: 100px;
+            background: var(--sage);
+            transition: width 1s ease;
+        }
+
+        /* ── CUSTOMER LIST ── */
+        .customer-list {
+            background: white;
+            border: 1px solid var(--sage-mid);
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.4s 0.4s ease both;
+        }
+
+        .customer-list-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--sage-light);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .customer-list-header .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; font-weight: 600; color: var(--sage-deep);
+        }
+
+        .filter-tabs {
+            display: flex; gap: 0.4rem;
+        }
+
+        .filter-tab {
+            padding: 0.25rem 0.6rem;
+            border-radius: 100px;
+            font-size: 0.68rem; font-weight: 500;
+            cursor: pointer; border: 1px solid var(--sage-mid);
+            background: white; color: var(--stone);
+            transition: all 0.2s;
+        }
+
+        .filter-tab.active {
+            background: var(--sage-deep);
+            border-color: var(--sage-deep);
+            color: white;
+        }
+
+        .customer-item {
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--sage-light);
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+
+        .customer-item:last-child { border-bottom: none; }
+
+        .customer-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--sage-light);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem; font-weight: 600; color: var(--sage-dark);
+            flex-shrink: 0;
+        }
+
+        .customer-info { flex: 1; }
+
+        .customer-name {
+            font-size: 0.85rem; font-weight: 500; color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+
+        .customer-detail {
+            font-size: 0.72rem; color: var(--stone); font-weight: 300;
+        }
+
+        .status-dot {
+            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+        }
+
+        .status-dot.green  { background: #22c55e; }
+        .status-dot.red    { background: var(--red); }
+        .status-dot.amber  { background: var(--amber); }
+
+        /* ── PACKAGE BREAKDOWN ── */
+        .package-card {
+            background: white;
+            border: 1px solid var(--sage-mid);
+            border-radius: 18px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.4s 0.5s ease both;
+        }
+
+        .package-item {
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-item:last-child { margin-bottom: 0; }
+
+        .package-color {
+            width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+        }
+
+        .package-info { flex: 1; }
+
+        .package-name {
+            font-size: 0.82rem; font-weight: 500; color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+
+        .package-bar {
+            height: 6px; background: var(--sage-light);
+            border-radius: 100px; overflow: hidden;
+        }
+
+        .package-bar-fill { height: 100%; border-radius: 100px; }
+
+        .package-count {
+            font-size: 0.78rem; font-weight: 500; color: var(--sage-dark);
+            flex-shrink: 0;
+        }
+
+        /* ── QUICK ACTIONS ── */
+        .quick-actions {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 0.85rem; margin-bottom: 1.25rem;
+            animation: fadeUp 0.4s 0.6s ease both;
+        }
+
+        .action-btn {
+            background: white;
+            border: 1px solid var(--sage-mid);
+            border-radius: 14px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-btn:active { background: var(--sage-light); }
+
+        .action-btn i {
+            font-size: 1.2rem; color: var(--sage);
+            margin-bottom: 0.4rem; display: block;
+        }
+
+        .action-btn span {
+            font-size: 0.78rem; color: var(--sage-deep);
+            font-weight: 400; line-height: 1.3; display: block;
+        }
+
+        /* ── BOTTOM NAV ── */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; border-top: 1px solid var(--sage-mid);
+            display: flex; padding: 0.6rem 0 0.8rem; z-index: 50;
+        }
+
+        .nav-item {
+            flex: 1; display: flex; flex-direction: column;
+            align-items: center; gap: 0.25rem; cursor: pointer; padding: 0.25rem 0;
+        }
+
+        .nav-item i { font-size: 1.1rem; color: var(--sage-mid); transition: color 0.2s; }
+        .nav-item span { font-size: 0.65rem; color: var(--sage-mid); font-weight: 400; }
+        .nav-item.active i { color: var(--sage-deep); }
+        .nav-item.active span { color: var(--sage-deep); font-weight: 500; }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="topbar-logo">
+        <i class="fas fa-shield-heart"></i>
+        SilverGuard
+    </div>
+    <span class="admin-badge">Admin</span>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+    <!-- GREETING -->
+    <div class="greeting">
+        <div class="label">Freitag, 17. April 2026</div>
+        <h1 class="serif">Guten Morgen,<br>Ihr Überblick.</h1>
+    </div>
+
+    <!-- ALARM — shown when customers haven't responded -->
+    <div class="alarm-card">
+        <div class="alarm-header">
+            <div class="alarm-dot"></div>
+            <div class="alarm-title">2 Alarme aktiv</div>
+        </div>
+        <div class="alarm-item">
+            <div class="alarm-avatar">EK</div>
+            <div class="alarm-info">
+                <div class="alarm-name">Elfriede K. — Tochter: Maria K.</div>
+                <div class="alarm-detail">Morgen-Check-in ausgeblieben · Basis-Fürsorge</div>
+            </div>
+            <div class="alarm-time">seit 2h</div>
+        </div>
+        <div class="alarm-item">
+            <div class="alarm-avatar">HB</div>
+            <div class="alarm-info">
+                <div class="alarm-name">Horst B. — Sohn: Stefan B.</div>
+                <div class="alarm-detail">Morgen-Check-in ausgeblieben · Familien-Fürsorge</div>
+            </div>
+            <div class="alarm-time">seit 1h</div>
+        </div>
+    </div>
+
+    <!-- KPI GRID -->
+    <div class="kpi-grid">
+        <div class="kpi-card highlight">
+            <div class="kpi-icon"><i class="fas fa-euro-sign"></i></div>
+            <div class="kpi-num">312 €</div>
+            <div class="kpi-label">Einnahmen April</div>
+            <div class="kpi-trend up" style="color:var(--sage-mid);">↑ +48 € vs. März</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-users"></i></div>
+            <div class="kpi-num">24</div>
+            <div class="kpi-label">Aktive Kunden</div>
+            <div class="kpi-trend up">↑ +3 diese Woche</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="kpi-num">22</div>
+            <div class="kpi-label">Heute gemeldet</div>
+            <div class="kpi-trend neutral">von 24 aktiven</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-user-plus"></i></div>
+            <div class="kpi-num">3</div>
+            <div class="kpi-label">Neue heute</div>
+            <div class="kpi-trend up">↑ Rekord diese Woche</div>
+        </div>
+    </div>
+
+    <!-- REVENUE BREAKDOWN -->
+    <div class="revenue-card">
+        <div class="section-label">Einnahmen</div>
+        <div class="revenue-big">312 €</div>
+        <div class="revenue-label">April 2026 · hochgerechnet ~420 € bis Monatsende</div>
+
+        <div class="revenue-bar-wrap">
+            <div class="revenue-bar-label">
+                <span class="name">Basis-Fürsorge (9,90 €)</span>
+                <span class="val">10 × 9,90 € = 99 €</span>
+            </div>
+            <div class="revenue-bar"><div class="revenue-bar-fill" style="width:32%;"></div></div>
+        </div>
+
+        <div class="revenue-bar-wrap" style="margin-top:0.75rem;">
+            <div class="revenue-bar-label">
+                <span class="name">Familien-Fürsorge (14,90 €)</span>
+                <span class="val">9 × 14,90 € = 134 €</span>
+            </div>
+            <div class="revenue-bar"><div class="revenue-bar-fill" style="width:43%;"></div></div>
+        </div>
+
+        <div class="revenue-bar-wrap" style="margin-top:0.75rem;">
+            <div class="revenue-bar-label">
+                <span class="name">Premium (19,90 €)</span>
+                <span class="val">4 × 19,90 € = 80 €</span>
+            </div>
+            <div class="revenue-bar"><div class="revenue-bar-fill" style="width:26%;"></div></div>
+        </div>
+    </div>
+
+    <!-- CUSTOMER LIST -->
+    <div class="customer-list">
+        <div class="customer-list-header">
+            <div class="title serif">Kunden heute</div>
+            <div class="filter-tabs">
+                <div class="filter-tab active" onclick="filterCustomers(this, 'all')">Alle</div>
+                <div class="filter-tab" onclick="filterCustomers(this, 'ok')">✓</div>
+                <div class="filter-tab" onclick="filterCustomers(this, 'alarm')">⚠</div>
+            </div>
+        </div>
+
+        <div class="customer-item" data-status="ok">
+            <div class="customer-avatar">HM</div>
+            <div class="customer-info">
+                <div class="customer-name">Hildegard M. — Sandra M.</div>
+                <div class="customer-detail">Gemeldet 08:34 Uhr · Familien-Fürsorge</div>
+            </div>
+            <div class="status-dot green"></div>
+        </div>
+
+        <div class="customer-item" data-status="ok">
+            <div class="customer-avatar">WS</div>
+            <div class="customer-info">
+                <div class="customer-name">Werner S. — Klaus S.</div>
+                <div class="customer-detail">Gemeldet 09:12 Uhr · Basis-Fürsorge</div>
+            </div>
+            <div class="status-dot green"></div>
+        </div>
+
+        <div class="customer-item" data-status="alarm">
+            <div class="customer-avatar">EK</div>
+            <div class="customer-info">
+                <div class="customer-name">Elfriede K. — Maria K.</div>
+                <div class="customer-detail">Nicht gemeldet · Alarm ausgelöst</div>
+            </div>
+            <div class="status-dot red"></div>
+        </div>
+
+        <div class="customer-item" data-status="alarm">
+            <div class="customer-avatar">HB</div>
+            <div class="customer-info">
+                <div class="customer-name">Horst B. — Stefan B.</div>
+                <div class="customer-detail">Nicht gemeldet · Erinnerung gesendet</div>
+            </div>
+            <div class="status-dot red"></div>
+        </div>
+
+        <div class="customer-item" data-status="ok">
+            <div class="customer-avatar">IG</div>
+            <div class="customer-info">
+                <div class="customer-name">Inge G. — Thomas G.</div>
+                <div class="customer-detail">Gemeldet 08:51 Uhr · Premium</div>
+            </div>
+            <div class="status-dot green"></div>
+        </div>
+
+        <div class="customer-item" data-status="pending">
+            <div class="customer-avatar">RH</div>
+            <div class="customer-info">
+                <div class="customer-name">Rosa H. — Andrea H.</div>
+                <div class="customer-detail">Noch ausstehend · Check-in um 09:30 Uhr</div>
+            </div>
+            <div class="status-dot amber"></div>
+        </div>
+
+    </div>
+
+    <!-- PACKAGE BREAKDOWN -->
+    <div class="package-card">
+        <div class="section-label">Pakete</div>
+        <div class="section-title serif">Verteilung</div>
+
+        <div class="package-item">
+            <div class="package-color" style="background:var(--sage-mid);"></div>
+            <div class="package-info">
+                <div class="package-name">Basis-Fürsorge · 9,90 €</div>
+                <div class="package-bar"><div class="package-bar-fill" style="width:42%;background:var(--sage-mid);"></div></div>
+            </div>
+            <div class="package-count">10 Kunden</div>
+        </div>
+
+        <div class="package-item">
+            <div class="package-color" style="background:var(--sage);"></div>
+            <div class="package-info">
+                <div class="package-name">Familien-Fürsorge · 14,90 €</div>
+                <div class="package-bar"><div class="package-bar-fill" style="width:38%;background:var(--sage);"></div></div>
+            </div>
+            <div class="package-count">9 Kunden</div>
+        </div>
+
+        <div class="package-item">
+            <div class="package-color" style="background:var(--gold);"></div>
+            <div class="package-info">
+                <div class="package-name">Premium · 19,90 €</div>
+                <div class="package-bar"><div class="package-bar-fill" style="width:17%;background:var(--gold);"></div></div>
+            </div>
+            <div class="package-count">4 Kunden</div>
+        </div>
+
+        <div class="package-item">
+            <div class="package-color" style="background:var(--red-soft);border:1px solid #fca5a5;"></div>
+            <div class="package-info">
+                <div class="package-name">Gekündigt diesen Monat</div>
+                <div class="package-bar"><div class="package-bar-fill" style="width:4%;background:#fca5a5;"></div></div>
+            </div>
+            <div class="package-count">1 Kunde</div>
+        </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="section-label">Schnellzugriff</div>
+    <div class="quick-actions">
+        <div class="action-btn" onclick="alert('SMS an alle senden …')">
+            <i class="fas fa-paper-plane"></i>
+            <span>SMS an alle senden</span>
+        </div>
+        <div class="action-btn" onclick="alert('Neuen Kunden anlegen …')">
+            <i class="fas fa-user-plus"></i>
+            <span>Kunden anlegen</span>
+        </div>
+        <div class="action-btn" onclick="alert('Monatsreport …')">
+            <i class="fas fa-chart-line"></i>
+            <span>Monatsreport</span>
+        </div>
+        <div class="action-btn" onclick="alert('Einstellungen …')">
+            <i class="fas fa-gear"></i>
+            <span>Einstellungen</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+    <div class="nav-item active">
+        <i class="fas fa-house"></i>
+        <span>Übersicht</span>
+    </div>
+    <div class="nav-item">
+        <i class="fas fa-users"></i>
+        <span>Kunden</span>
+    </div>
+    <div class="nav-item">
+        <i class="fas fa-bell"></i>
+        <span>Alarme</span>
+    </div>
+    <div class="nav-item">
+        <i class="fas fa-euro-sign"></i>
+        <span>Finanzen</span>
+    </div>
+    <div class="nav-item">
+        <i class="fas fa-gear"></i>
+        <span>System</span>
+    </div>
+</div>
+
+<script>
+    function filterCustomers(tab, filter) {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        document.querySelectorAll('.customer-item').forEach(item => {
+            if (filter === 'all') {
+                item.style.display = 'flex';
+            } else if (filter === 'ok') {
+                item.style.display = item.dataset.status === 'ok' ? 'flex' : 'none';
+            } else if (filter === 'alarm') {
+                item.style.display = item.dataset.status === 'alarm' ? 'flex' : 'none';
+            }
+        });
+    }
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>

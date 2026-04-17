@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seite nicht gefunden – SilverGuard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #4a7c59; --sage-dark: #2d5a3d; --sage-deep: #1a3a27;
+            --sage-light: #e8f0eb; --sage-mid: #c2d9c9;
+            --cream: #faf8f4; --warm-white: #f5f2ec; --stone: #8a7f74; --ink: #1c1c1c;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--warm-white); color: var(--ink);
+            min-height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 2rem 1.75rem; text-align: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 700; color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem;
+            margin-bottom: 3rem; text-decoration: none;
+        }
+        .logo-icon {
+            width: 30px; height: 30px; background: var(--sage);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 0.8rem;
+        }
+        .error-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem; font-weight: 700; color: var(--sage-light);
+            line-height: 1; margin-bottom: 0.5rem;
+            animation: fadeUp 0.5s ease both;
+        }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 700; color: var(--sage-deep);
+            margin-bottom: 0.75rem;
+            animation: fadeUp 0.5s 0.1s ease both;
+        }
+        p {
+            font-size: 0.95rem; color: var(--stone); font-weight: 300;
+            line-height: 1.6; max-width: 280px; margin: 0 auto 2rem;
+            animation: fadeUp 0.5s 0.2s ease both;
+        }
+        .btn {
+            display: inline-block; background: var(--sage-deep); color: white;
+            padding: 0.9rem 2rem; border-radius: 12px;
+            font-size: 0.92rem; font-weight: 500; text-decoration: none;
+            box-shadow: 0 4px 16px rgba(26,58,39,0.18);
+            animation: fadeUp 0.5s 0.3s ease both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+    <div class="error-num">404</div>
+    <h1>Seite nicht gefunden</h1>
+    <p>Die gesuchte Seite existiert nicht oder wurde verschoben. Kein Problem — hier geht es zurück.</p>
+    <a href="index.html" class="btn"><i class="fas fa-house" style="margin-right:0.4rem"></i> Zur Startseite</a>
+</body>
+</html>
