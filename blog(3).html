@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazin & Ratgeber | SilverGuard</title>
+    <meta name="description" content="Ratgeber und Tipps rund um Seniorensicherheit und digitale Fürsorge. Von SilverGuard aus Nürnberg.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #4a7c59; --sage-dark: #2d5a3d; --sage-deep: #1a3a27;
+            --sage-light: #e8f0eb; --sage-mid: #c2d9c9;
+            --cream: #faf8f4; --stone: #8a7f74; --gold: #c9a84c;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: #1a1a1a; }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+
+        nav { padding: 1rem 1.5rem; background: white; border-bottom: 1px solid var(--sage-mid); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--sage-deep); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 28px; height: 28px; background: var(--sage); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+
+        header { text-align: center; margin-bottom: 4rem; }
+        header h1 { font-size: 3rem; color: var(--sage-deep); margin-bottom: 1rem; }
+        header p { color: var(--stone); font-weight: 300; }
+
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+        .blog-card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--sage-light); transition: transform 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+        .blog-card:hover { transform: translateY(-5px); border-color: var(--sage-mid); }
+        .blog-card.coming-soon { opacity: 0.65; cursor: default; }
+        .blog-card.coming-soon:hover { transform: none; }
+
+        .card-image { height: 180px; background: var(--sage-light); display: flex; align-items: center; justify-content: center; color: var(--sage); font-size: 3rem; }
+
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-tag { font-size: 0.7rem; text-transform: uppercase; color: var(--sage); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem; display: block; }
+        .soon-tag { font-size: 0.7rem; font-weight: 700; color: var(--stone); background: var(--sage-light); padding: 0.2rem 0.6rem; border-radius: 100px; display: inline-block; margin-bottom: 0.5rem; }
+        .card-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--sage-deep); margin-bottom: 0.75rem; line-height: 1.3; flex-grow: 1; }
+        .card-content p { font-size: 0.88rem; color: var(--stone); font-weight: 300; line-height: 1.6; margin-bottom: 1rem; }
+        .read-more { font-size: 0.82rem; font-weight: 600; color: var(--sage-dark); display: flex; align-items: center; gap: 0.4rem; }
+
+        footer { text-align: center; padding: 2rem; color: var(--stone); font-size: 0.8rem; border-top: 1px solid var(--sage-light); }
+        footer a { color: var(--stone); text-decoration: none; margin: 0 0.75rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+    <a href="index.html#preise" style="color:var(--sage);font-weight:500;text-decoration:none;font-size:0.88rem;">Preise ansehen</a>
+</nav>
+
+<div class="container">
+    <header>
+        <h1 class="serif">Magazin & <em>Ratgeber</em></h1>
+        <p>Wertvolle Impulse für ein sicheres und würdevolles Leben im Alter.</p>
+    </header>
+
+    <div class="blog-grid">
+
+        <!-- Artikel 1 — live -->
+        <a href="ratgeber.html" class="blog-card">
+            <div class="card-image"><i class="fas fa-house-signal"></i></div>
+            <div class="card-content">
+                <span class="card-tag">Vergleich</span>
+                <h2 class="serif">Die würdevolle Alternative zum Hausnotruf</h2>
+                <p>Warum der klassische "rote Knopf" oft in der Schublade landet — und was wirklich hilft.</p>
+                <span class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+
+        <!-- Artikel 2 — kommt bald -->
+        <div class="blog-card coming-soon">
+            <div class="card-image"><i class="fas fa-heart-pulse"></i></div>
+            <div class="card-content">
+                <span class="soon-tag">Kommt bald</span>
+                <h2 class="serif">Stürze im Alter: So machen Sie die Wohnung sicher</h2>
+                <p>Kleine Veränderungen mit großer Wirkung. Unsere Checkliste für ein stolperfreies Zuhause.</p>
+                <span class="read-more" style="opacity:0.5;">Demnächst verfügbar</span>
+            </div>
+        </div>
+
+        <!-- Artikel 3 — kommt bald -->
+        <div class="blog-card coming-soon">
+            <div class="card-image"><i class="fas fa-mobile-screen-button"></i></div>
+            <div class="card-content">
+                <span class="soon-tag">Kommt bald</span>
+                <h2 class="serif">Keine Angst vor dem Handy</h2>
+                <p>Wie Sie Ihren Eltern die Scheu vor digitaler Kommunikation nehmen — Schritt für Schritt.</p>
+                <span class="read-more" style="opacity:0.5;">Demnächst verfügbar</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p style="margin-bottom:0.5rem;">© 2026 SilverGuard · Nürnberg</p>
+    <a href="index.html">Startseite</a>
+    <a href="ratgeber.html">Ratgeber</a>
+    <a href="kontakt.html">Kontakt</a>
+</footer>
+
+<a href="https://wa.me/491711473805?text=Hallo%20SilverGuard%2C%20ich%20habe%20eine%20Frage." target="_blank" style="position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:999;text-decoration:none;">
+    <i class="fab fa-whatsapp" style="color:white;font-size:1.6rem;"></i>
+</a>
+
+</body>
+</html>
