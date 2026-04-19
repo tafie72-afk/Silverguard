@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gift of Care – SilverGuard Gift Cards</title>
+    <meta name="description" content="Give your family a year of peace of mind. SilverGuard gift cards for 3, 6, or 12 months — the perfect gift for birthdays or holidays.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="alternate" hreflang="de" href="gutschein.html">
+    <link rel="alternate" hreflang="en" href="gift.html">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- AUTO-REDIRECT -->
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('lang')) return;
+            if (params.get('redirected')) return;
+            const lang = navigator.language || navigator.userLanguage || 'en';
+            if (lang.startsWith('de')) {
+                window.location.href = 'gutschein.html?redirected=1';
+            }
+        })();
+    </script>
+
+    <style>
+        :root {
+            --sage: #4a7c59; --sage-dark: #2d5a3d; --sage-deep: #1a3a27;
+            --sage-light: #e8f0eb; --sage-mid: #c2d9c9;
+            --cream: #faf8f4; --warm-white: #f5f2ec;
+            --stone: #8a7f74; --ink: #1c1c1c; --gold: #c9a84c;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+
+        nav { padding: 1rem 1.5rem; background: white; border-bottom: 1px solid var(--sage-mid); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--sage-deep); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 28px; height: 28px; background: var(--sage); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; }
+
+        .hero { background: linear-gradient(135deg, #1a3a27, #2d5a3d); padding: 4rem 1.75rem; text-align: center; }
+        .hero-tag { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.2); color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.85rem; border-radius: 100px; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: white; margin-bottom: 1rem; line-height: 1.15; }
+        .hero h1 em { color: var(--gold); font-style: italic; }
+        .hero p { color: #b8cebf; font-weight: 300; font-size: 1rem; max-width: 320px; margin: 0 auto; line-height: 1.65; }
+
+        .container { max-width: 480px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+        .gift-card { background: white; border: 2px solid var(--sage-mid); border-radius: 20px; padding: 1.5rem; margin-bottom: 1rem; cursor: pointer; transition: all 0.2s; position: relative; }
+        .gift-card.selected { border-color: var(--sage-deep); background: var(--sage-light); }
+        .gift-card.popular { border-color: var(--gold); }
+
+        .gift-badge { position: absolute; top: -10px; right: 1rem; background: var(--gold); color: var(--sage-deep); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 100px; }
+
+        .gift-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+        .gift-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 700; color: var(--sage-deep); }
+        .gift-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--sage-deep); }
+        .gift-price span { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 300; color: var(--stone); }
+        .gift-saving { font-size: 0.72rem; color: var(--sage); font-weight: 500; margin-top: 0.2rem; }
+
+        .gift-features { display: flex; flex-direction: column; gap: 0.35rem; }
+        .gift-feature { font-size: 0.82rem; color: var(--stone); font-weight: 300; display: flex; align-items: center; gap: 0.5rem; }
+        .gift-feature i { color: var(--sage); font-size: 0.65rem; }
+
+        .gift-radio { position: absolute; top: 1.25rem; right: 1.25rem; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--sage-mid); }
+        .gift-card.selected .gift-radio { border-color: var(--sage-deep); background: var(--sage-deep); }
+        .gift-card.selected .gift-radio::after { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; background: white; margin: 4px auto; }
+
+        .tarif-section { margin: 1.5rem 0; }
+        .tarif-label { font-size: 0.78rem; font-weight: 500; color: var(--sage-dark); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+        .tarif-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .tarif-opt { background: var(--sage-light); border: 1.5px solid var(--sage-mid); border-radius: 10px; padding: 0.65rem; text-align: center; cursor: pointer; }
+        .tarif-opt.selected { background: var(--sage-deep); border-color: var(--sage-deep); }
+        .tarif-opt.selected .tarif-name { color: white; }
+        .tarif-name { font-size: 0.82rem; font-weight: 500; color: var(--sage-deep); }
+        .tarif-preis { font-size: 0.7rem; color: var(--stone); font-weight: 300; margin-top: 0.1rem; }
+
+        .form-section { margin: 1.5rem 0; }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--sage-dark); text-transform: uppercase; margin-bottom: 0.45rem; }
+        .input-wrap { position: relative; }
+        .input-wrap i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--sage-mid); font-size: 0.85rem; }
+        .form-input { width: 100%; padding: 0.9rem 1rem 0.9rem 2.75rem; border: 1.5px solid var(--sage-mid); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; }
+        .form-hint { font-size: 0.75rem; color: var(--stone); font-weight: 300; margin-top: 0.4rem; }
+
+        .summary-box { background: var(--sage-light); border-radius: 14px; padding: 1.25rem; margin: 1.5rem 0; }
+        .summary-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .summary-row:last-child { margin-bottom: 0; font-weight: 600; font-size: 0.95rem; padding-top: 0.5rem; border-top: 1px solid var(--sage-mid); }
+
+        .btn-pay { width: 100%; padding: 1.1rem; background: var(--sage-deep); color: white; border: none; border-radius: 12px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+
+        .prozess { background: white; border-radius: 16px; padding: 1.5rem; margin-top: 2rem; border: 1px solid var(--sage-light); }
+        .prozess h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--sage-deep); margin-bottom: 1rem; }
+        .prozess-step { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+        .prozess-num { width: 28px; height: 28px; border-radius: 50%; background: var(--sage-light); color: var(--sage-dark); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .prozess-text { font-size: 0.85rem; color: var(--stone); line-height: 1.5; }
+
+        footer { text-align: center; padding: 2rem; color: var(--stone); font-size: 0.8rem; }
+        footer a { color: var(--stone); text-decoration: none; margin: 0 0.5rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+    <a href="gutschein.html" style="font-size: 0.8rem; color: var(--stone); text-decoration: none;">🇩🇪 Deutsch</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-tag"><i class="fas fa-gift" style="font-size:0.6rem;"></i> Give the Gift of Care</div>
+    <h1 class="serif">Give the Gift of<br><em>Peace of Mind.</em></h1>
+    <p>A SilverGuard Gift Card — the most meaningful gift for parents and grandparents. Works worldwide. 🌍</p>
+</div>
+
+<div class="container">
+
+    <div style="margin-bottom:1.5rem;">
+        <span class="tarif-label">How long would you like to gift?</span>
+
+        <div class="gift-card selected" id="gift-3" onclick="selectGift('3', 3)">
+            <div class="gift-radio"></div>
+            <div class="gift-top">
+                <div>
+                    <div class="gift-name">3 Months of Care</div>
+                    <div class="gift-saving">Perfect to get started</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="gift-price" id="price-3">€ 29.70 <span>one-time</span></div>
+                </div>
+            </div>
+            <div class="gift-features">
+                <div class="gift-feature"><i class="fas fa-check"></i> 3 months of full protection</div>
+                <div class="gift-feature"><i class="fas fa-check"></i> No subscription for the recipient</div>
+            </div>
+        </div>
+
+        <div class="gift-card popular" id="gift-6" onclick="selectGift('6', 6)">
+            <div class="gift-badge">Popular</div>
+            <div class="gift-radio"></div>
+            <div class="gift-top">
+                <div>
+                    <div class="gift-name">6 Months of Care</div>
+                    <div class="gift-saving" style="color:var(--gold);">Save 1 month — ideal birthday gift</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="gift-price" id="price-6">€ 54.45 <span>one-time</span></div>
+                </div>
+            </div>
+            <div class="gift-features">
+                <div class="gift-feature"><i class="fas fa-check"></i> 6 months of full protection</div>
+                <div class="gift-feature"><i class="fas fa-check"></i> 1 month included for free</div>
+            </div>
+        </div>
+
+        <div class="gift-card" id="gift-12" onclick="selectGift('12', 12)">
+            <div class="gift-radio"></div>
+            <div class="gift-top">
+                <div>
+                    <div class="gift-name">12 Months of Care</div>
+                    <div class="gift-saving">Save 2 months — the perfect annual gift</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="gift-price" id="price-12">€ 99.00 <span>one-time</span></div>
+                </div>
+            </div>
+            <div class="gift-features">
+                <div class="gift-feature"><i class="fas fa-check"></i> 12 months of full protection</div>
+                <div class="gift-feature"><i class="fas fa-check"></i> 2 months included for free</div>
+                <div class="gift-feature"><i class="fas fa-check"></i> Printable PDF certificate included</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tarif-section">
+        <span class="tarif-label">Which plan would you like to gift?</span>
+        <div class="tarif-grid">
+            <div class="tarif-opt selected" id="tarif-basis" onclick="selectTarif('basis', 9.90)">
+                <div class="tarif-name">Basis</div>
+                <div class="tarif-preis">€ 9.90 / mo</div>
+            </div>
+            <div class="tarif-opt" id="tarif-familie" onclick="selectTarif('familie', 14.90)">
+                <div class="tarif-name">Family</div>
+                <div class="tarif-preis">€ 14.90 / mo</div>
+            </div>
+            <div class="tarif-opt" id="tarif-premium" onclick="selectTarif('premium', 19.90)">
+                <div class="tarif-name">Premium</div>
+                <div class="tarif-preis">€ 19.90 / mo</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <span class="tarif-label">Your Details (Sender)</span>
+        <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <div class="input-wrap">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-input" id="g-name" placeholder="e.g. Thomas">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Your Email</label>
+            <div class="input-wrap">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-input" id="g-email" placeholder="your@email.com">
+            </div>
+            <div class="form-hint">We'll send the gift code and PDF here</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Recipient's Name (optional)</label>
+            <div class="input-wrap">
+                <i class="fas fa-heart"></i>
+                <input type="text" class="form-input" id="g-empfaenger" placeholder="e.g. Mum">
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <div class="summary-row"><span class="key">Plan</span><span class="val" id="sum-tarif">Basis-Care</span></div>
+        <div class="summary-row"><span class="key">Duration</span><span class="val" id="sum-monate">3 Months</span></div>
+        <div class="summary-row"><span class="key">Total Price</span><span class="val" id="sum-preis" style="font-size:1.1rem;">€ 29.70</span></div>
+    </div>
+
+    <button class="btn-pay" onclick="kaufeGutschein()">
+        <i class="fas fa-gift"></i> Buy Gift Card Now
+    </button>
+
+    <div class="prozess">
+        <h3 class="serif">How it works</h3>
+        <div class="prozess-step">
+            <div class="prozess-num">1</div>
+            <div class="prozess-text"><strong>One-time payment</strong> — no recurring subscription, no risk.</div>
+        </div>
+        <div class="prozess-step">
+            <div class="prozess-num">2</div>
+            <div class="prozess-text"><strong>PDF Certificate via email</strong> — includes the gift code. Print it or send it digitally.</div>
+        </div>
+        <div class="prozess-step">
+            <div class="prozess-num">3</div>
+            <div class="prozess-text"><strong>Easy activation</strong> — they just enter the code during registration. No credit card required for them.</div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 SilverGuard · Germany · Serving families worldwide 🌍</p>
+    <a href="index.html">Home</a>
+    <a href="gutschein.html">🇩🇪 Deutsch</a>
+</footer>
+
+<script>
+    let selectedMonate = 3;
+    let selectedTarifPreis = 9.90;
+    let selectedTarifName = 'Basis-Care';
+
+    function selectGift(id, monate) {
+        selectedMonate = monate;
+        ['3','6','12'].forEach(m => document.getElementById('gift-' + m).classList.remove('selected'));
+        document.getElementById('gift-' + id).classList.add('selected');
+        updateSummary();
+    }
+
+    function selectTarif(tarif, preis) {
+        selectedTarifPreis = preis;
+        selectedTarifName = tarif + '-Care';
+        ['basis','familie','premium'].forEach(t => {
+            const el = document.getElementById('tarif-' + t);
+            if(el) el.classList.remove('selected');
+        });
+        document.getElementById('tarif-' + tarif).classList.add('selected');
+        
+        document.getElementById('price-3').innerHTML = '€ ' + (preis * 3).toFixed(2) + ' <span>one-time</span>';
+        document.getElementById('price-6').innerHTML = '€ ' + (preis * 5).toFixed(2) + ' <span>one-time</span>';
+        document.getElementById('price-12').innerHTML = '€ ' + (preis * 10).toFixed(2) + ' <span>one-time</span>';
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const spar = selectedMonate === 3 ? 0 : (selectedMonate === 6 ? 1 : 2);
+        const preis = (selectedTarifPreis * (selectedMonate - spar)).toFixed(2);
+        document.getElementById('sum-tarif').textContent = selectedTarifName;
+        document.getElementById('sum-monate').textContent = selectedMonate + ' Months';
+        document.getElementById('sum-preis').textContent = '€ ' + preis;
+    }
+
+    function kaufeGutschein() {
+        const name = document.getElementById('g-name').value;
+        const email = document.getElementById('g-email').value;
+        if (!name || !email) { alert('Please enter your name and email.'); return; }
+        alert('✅ Thank you, ' + name + '! Your gift card will be sent to ' + email + ' once payment is confirmed.');
+    }
+</script>
+
+</body>
+</html>
