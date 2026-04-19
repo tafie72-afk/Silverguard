@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Was passiert mit der Handynummer? | SilverGuard</title>
+    <meta name="description" content="Transparent und ehrlich: So behandelt SilverGuard die Handynummer Ihrer Liebsten. Kein Verkauf, keine Weitergabe, jederzeit löschbar.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="alternate" hreflang="de" href="vertrauen.html">
+    <link rel="alternate" hreflang="en" href="trust.html">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- AUTO-REDIRECT LOGIC -->
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('lang')) return;       // Explizite Wahl -> kein Redirect
+            if (params.get('redirected')) return; // Loop-Schutz
+            const lang = navigator.language || navigator.userLanguage || 'de';
+            if (!lang.startsWith('de')) {
+                window.location.href = 'trust.html?redirected=1';
+            }
+        })();
+    </script>
+
+    <style>
+        :root {
+            --sage:       #4a7c59;
+            --sage-dark:  #2d5a3d;
+            --sage-deep:  #1a3a27;
+            --sage-light: #e8f0eb;
+            --sage-mid:   #c2d9c9;
+            --cream:      #faf8f4;
+            --warm-white: #f5f2ec;
+            --stone:      #8a7f74;
+            --ink:        #1c1c1c;
+            --gold:       #c9a84c;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.75rem;
+            background: rgba(250,248,244,0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sage-mid);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--sage-deep);
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 30px; height: 30px;
+            background: var(--sage); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem;
+        }
+
+        .hero {
+            background: var(--sage-deep);
+            padding: 3.5rem 1.75rem 3rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.35rem 0.85rem; border-radius: 100px;
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            color: var(--sage-mid); margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem; font-weight: 700;
+            color: white; line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero p {
+            font-size: 0.95rem; color: var(--sage-mid);
+            font-weight: 300; line-height: 1.65;
+            max-width: 320px; margin: 0 auto;
+        }
+
+        .content { padding: 2.5rem 1.75rem; }
+
+        .promise-card {
+            background: white;
+            border: 1.5px solid var(--sage-mid);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .promise-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; flex-shrink: 0;
+        }
+
+        .promise-icon.green  { background: var(--sage-light); }
+        .promise-icon.gold   { background: #fef3c7; }
+        .promise-icon.blue   { background: #eff6ff; }
+        .promise-icon.red    { background: #fef2f2; }
+
+        .promise-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--sage-deep); margin-bottom: 0.4rem;
+        }
+
+        .promise-card p {
+            font-size: 0.85rem; color: var(--stone);
+            font-weight: 300; line-height: 1.6;
+        }
+
+        .flow-section {
+            background: var(--warm-white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .flow-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--sage-deep); margin-bottom: 1.25rem;
+            text-align: center;
+        }
+
+        .flow-step {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .flow-num {
+            width: 32px; height: 32px;
+            background: var(--sage-deep); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.8rem; font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .flow-text {
+            font-size: 0.88rem; color: #4a4a4a;
+            font-weight: 300; line-height: 1.5;
+        }
+
+        .flow-arrow {
+            text-align: center; color: var(--sage-mid);
+            font-size: 1rem; margin: 0.25rem 0 0.25rem 1rem;
+        }
+
+        .never-box {
+            background: #fef2f2;
+            border: 1.5px solid #fecaca;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .never-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 700;
+            color: #991b1b; margin-bottom: 1rem;
+        }
+
+        .never-item {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.88rem; color: #7f1d1d;
+            font-weight: 300; margin-bottom: 0.6rem;
+        }
+
+        .never-item i { color: #ef4444; font-size: 0.7rem; flex-shrink: 0; }
+
+        .signature-box {
+            background: var(--sage-deep);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .signature-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; font-weight: 700;
+            color: white; margin-bottom: 0.75rem;
+        }
+
+        .signature-box p {
+            font-size: 0.85rem; color: var(--sage-mid);
+            font-weight: 300; line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; font-style: italic;
+            color: var(--gold); margin-bottom: 0.25rem;
+        }
+
+        .signature-name {
+            font-size: 0.78rem; color: var(--sage-mid);
+            font-weight: 300;
+        }
+
+        .delete-box {
+            background: var(--sage-light);
+            border: 1.5px solid var(--sage-mid);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .delete-box p {
+            font-size: 0.85rem; color: var(--sage-dark);
+            font-weight: 300; line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .delete-box a {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--sage-deep); color: white;
+            padding: 0.7rem 1.5rem; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 500;
+            text-decoration: none;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; font-weight: 700;
+            color: var(--sage-deep); margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 0.88rem; color: var(--stone);
+            font-weight: 300; margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            display: block;
+            background: var(--sage-deep); color: white;
+            padding: 1.1rem; border-radius: 14px;
+            font-size: 0.95rem; font-weight: 500;
+            text-decoration: none; text-align: center;
+            box-shadow: 0 6px 20px rgba(26,58,39,0.2);
+        }
+
+        footer {
+            background: var(--sage-deep);
+            padding: 2rem 1.75rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex; justify-content: center;
+            gap: 1.25rem; margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--sage-mid); text-decoration: none;
+            font-size: 0.78rem; font-weight: 300;
+        }
+
+        .footer-copy { font-size: 0.7rem; color: #3d6b4f; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-heart"></i></div>
+        SilverGuard
+    </a>
+    <a href="trust.html" style="font-size: 0.8rem; color: var(--stone); text-decoration: none;">🇬🇧 English</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-badge"><i class="fas fa-lock" style="font-size:0.6rem;"></i> Transparenz</div>
+    <h1>Was passiert mit<br>der <em>Handynummer</em>?</h1>
+    <p>Eine faire Frage — hier ist die ehrliche Antwort. Kein Juristendeutsch, keine versteckten Klauseln.</p>
+</div>
+
+<div class="content">
+
+    <div class="promise-card">
+        <div class="promise-icon green"><i class="fas fa-sms" style="color:var(--sage);"></i></div>
+        <div>
+            <h3>Nur für Check-in SMS</h3>
+            <p>Die Handynummer wird ausschließlich dafür verwendet täglich eine freundliche Check-in SMS zu senden. Für nichts anderes.</p>
+        </div>
+    </div>
+
+    <div class="promise-card">
+        <div class="promise-icon gold"><i class="fas fa-hand" style="color:#d97706;"></i></div>
+        <div>
+            <h3>Volle Kontrolle</h3>
+            <p>Ihre Liebsten können den Dienst jederzeit durch Antwort mit STOP beenden — sofort und ohne Rückfragen.</p>
+        </div>
+    </div>
+
+    <div class="promise-card">
+        <div class="promise-icon blue"><i class="fas fa-server" style="color:#2563eb;"></i></div>
+        <div>
+            <h3>Server in Deutschland</h3>
+            <p>Alle Daten werden ausschließlich auf zertifizierten Servern in Deutschland gespeichert. Kein Transfer ins Ausland.</p>
+        </div>
+    </div>
+
+    <div class="promise-card">
+        <div class="promise-icon green"><i class="fas fa-trash" style="color:var(--sage);"></i></div>
+        <div>
+            <h3>Löschen in 24 Stunden</h3>
+            <p>Auf Wunsch werden alle Daten innerhalb von 24 Stunden vollständig und unwiderruflich gelöscht.</p>
+        </div>
+    </div>
+
+    <div class="flow-section">
+        <div class="flow-title">So wird die Nummer verwendet</div>
+
+        <div class="flow-step">
+            <div class="flow-num">1</div>
+            <div class="flow-text">Sie tragen die Nummer bei der Registrierung ein</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-num">2</div>
+            <div class="flow-text">Ihre Liebsten erhalten eine Einverständnis-SMS und bestätigen aktiv</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-num">3</div>
+            <div class="flow-text">Täglich um die gewählte Uhrzeit wird eine Check-in SMS gesendet</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-num">4</div>
+            <div class="flow-text">Bei Antwort: Sie erhalten eine Bestätigung. Bei Ausbleiben: Alarm an Sie</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-num">5</div>
+            <div class="flow-text">Nach Kündigung: alle Daten werden innerhalb von 30 Tagen gelöscht</div>
+        </div>
+    </div>
+
+    <div class="never-box">
+        <h3>❌ Was wir niemals tun</h3>
+        <div class="never-item"><i class="fas fa-times"></i> Die Nummer an Dritte weitergeben</div>
+        <div class="never-item"><i class="fas fa-times"></i> Werbung oder Marketing SMS senden</div>
+        <div class="never-item"><i class="fas fa-times"></i> Den Standort dauerhaft verfolgen</div>
+        <div class="never-item"><i class="fas fa-times"></i> Daten verkaufen oder vermieten</div>
+        <div class="never-item"><i class="fas fa-times"></i> Nach Kündigung Daten behalten</div>
+    </div>
+
+    <div class="signature-box">
+        <h3>Mein persönliches Versprechen</h3>
+        <p>Ich habe SilverGuard gegründet weil ich selbst weiß wie es sich anfühlt sich täglich um seine Eltern zu sorgen. Vertrauen ist die Grundlage dieses Dienstes — ohne es gibt es SilverGuard nicht.</p>
+        <div class="signature">Tanja Fiestelmann</div>
+        <div class="signature-name">Gründerin, SilverGuard · Nürnberg</div>
+    </div>
+
+    <div class="delete-box">
+        <p>Sie möchten alle Daten sofort löschen lassen? Schreiben Sie uns — wir erledigen das innerhalb von 24 Stunden.</p>
+        <a href="mailto:info@silver-guard.de?subject=Datenloeschung&body=Bitte%20loeschen%20Sie%20meine%20Daten.">
+            <i class="fas fa-envelope"></i> Datenlöschung beantragen
+        </a>
+    </div>
+
+    <div class="cta-section">
+        <h2>Bereit für mehr<br>Sicherheit?</h2>
+        <p>14 Tage kostenlos testen — kein Vertrag, täglich kündbar.</p>
+        <a href="registrierung.html" class="btn-primary">
+            <i class="fas fa-shield-heart" style="margin-right:0.4rem;"></i>
+            Jetzt 14 Tage gratis starten
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="agb.html">AGB</a>
+    </div>
+    <div class="footer-copy">© 2026 Silver-Guard.de — Made for your family.</div>
+</footer>
+
+<a href="https://wa.me/491711473805?text=Hallo%20SilverGuard%2C%20ich%20habe%20eine%20Frage%20zum%20Datenschutz." target="_blank" style="position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:999;text-decoration:none;">
+    <i class="fab fa-whatsapp" style="color:white;font-size:1.6rem;"></i>
+</a>
+
+</body>
+</html>
