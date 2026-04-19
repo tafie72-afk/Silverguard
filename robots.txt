@@ -1,0 +1,8 @@
+# Erstellung der robots.txt als klickbares Download-Element
+robots_content = """User-agent: *
+Allow: /
+
+Sitemap: https://www.silver-guard.de/sitemap.xml"""
+
+with open("robots.txt", "w", encoding="utf-8") as f:
+    f.write(robots_content)
